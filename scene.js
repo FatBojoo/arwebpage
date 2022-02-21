@@ -33,7 +33,12 @@ const createScene = async function(engine) {
 
     const featuresManager = xrHelper.baseExperience.featuresManager;
 
-    const xrBackgroundRemover = featuresManager.enableFeature(BABYLON.WebXRBackgroundRemover.Name);
+    const xrBackgroundRemover = featuresManager.enableFeature(BABYLON.WebXRBackgroundRemover, "latest", {
+        environmentHelperRemovalFlags: {
+          skyBox: false,
+          ground: false,
+        },
+      });
 
     featuresManager.enableFeature(BABYLON.WebXRFeatureName.POINTER_SELECTION, "stable", {
         xrInput: xrHelper.input,
