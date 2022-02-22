@@ -20,6 +20,7 @@
 (async function() {
   const isArSessionSupported = navigator.xr && navigator.xr.isSessionSupported && await navigator.xr.isSessionSupported("immersive-ar");
   if (isArSessionSupported) {
+    //document.getElementById("enter-ar").addEventListener("click", window.app.activateXR)
     window.app.activateXR();
   } else {
     onNoXRDevice();
@@ -35,6 +36,7 @@ class App {
    * Run when the Start AR button is pressed.
    */
   activateXR = async () => {
+    console.log("activareXR");
     try {
       // Initialize a WebXR session using "immersive-ar".
       this.xrSession = await navigator.xr.requestSession("immersive-ar", {
