@@ -154,7 +154,7 @@ class App {
         this.stabilized = true;
         document.body.classList.add('stabilized');
       }
-      if (hitTestResults.length > 0 && window.app.activeMode === UserMode.PlacementMode) {
+      if (hitTestResults.length > 0 && this.activeMode === UserMode.PlacementMode) {
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
         // Update the reticle position
