@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
 body {
   font-family: monospace;
   margin: 0;
@@ -24,7 +24,7 @@ body {
   user-select: none;
   background-color: rgb(140, 182, 202);
 }
-
+*/
 div.demo-card {
   width: 80vw;
   margin: 20px auto;
