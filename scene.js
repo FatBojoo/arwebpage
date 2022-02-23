@@ -106,6 +106,8 @@ class App {
   /** Place a sunflower when the screen is tapped. */
   onSelect = (event) => {
     let selectedObject = event.target;
+    console.log("Target is");
+    console.log(selectedObject);
     if(selectedObject.id === "PlacementMode")
     {
       console.log("Pressing Placement Button");
