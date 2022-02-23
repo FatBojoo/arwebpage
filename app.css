@@ -22,7 +22,7 @@ body {
   height: 100vh;
   -webkit-user-select: none;
   user-select: none;
-  background-color: rgb(69, 90, 100);
+  background-color: rgb(140, 182, 202);
 }
 
 div.demo-card {
@@ -102,6 +102,45 @@ body.ar #stabilization {
 
 body.ar.stabilized #stabilization {
   display: none;
+}
+
+.PlacementMode {
+  background-image: url(PlacementIcon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  opacity: 0.6;
+  width: 162px;
+  height: 162px;
+  position: absolute;
+  bottom: 10px;
+  left: 40%;
+  margin-left: -104.5px; /*104.5px is half of the button's width*/
+  background-color: transparent;
+}
+.PlacementMode:hover{
+  opacity: 1.0;
+}
+.ObjectMode {
+  background-image: url(ObjectIcon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  opacity: 0.6;
+  width: 162px;
+  height: 162px;
+  position: absolute;
+  bottom: 10px;
+  right: 40%;
+  margin-left: -104.5px; /*104.5px is half of the button's width*/
+  background-color: transparent;
+}
+.ObjectMode:hover{
+  opacity: 1.0;
+}
+.UserMode{
+  height:1000px;
+  
 }
 
 #wrong-hosting-root { display: none; }

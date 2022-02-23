@@ -27,11 +27,20 @@
   }
 })();
 
+const UserMode = {
+  ObjectMode: 'ObjectMode',
+  PlacementMode: 'PlacementMode'
+};
+
 /**
  * Container class to manage connecting to the WebXR Device API
  * and handle rendering on every frame.
  */
 class App {
+  constructor() {
+    this.activeMode = UserMode.ObjectMode;
+  }
+  
   /**
    * Run when the Start AR button is pressed.
    */
@@ -96,13 +105,16 @@ class App {
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = () => {
-    if (window.sunflower) {
-      const clone = window.sunflower.clone();
-      clone.position.copy(this.reticle.position);
-      this.scene.add(clone)
+    if(window.app.activeMode === UserMode.PlacementMode)
+    {
+      if (window.sunflower) {
+        const clone = window.sunflower.clone();
+        clone.position.copy(this.reticle.position);
+        this.scene.add(clone)
 
-      const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-      shadowMesh.position.y = clone.position.y;
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = clone.position.y;
+      }
     }
   }
 
@@ -142,7 +154,7 @@ class App {
         this.stabilized = true;
         document.body.classList.add('stabilized');
       }
-      if (hitTestResults.length > 0) {
+      if (hitTestResults.length > 0 && window.app.activeMode === UserMode.PlacementMode) {
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
         // Update the reticle position
