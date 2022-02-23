@@ -105,7 +105,7 @@ class App {
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = () => {
-    if(window.app.activeMode === UserMode.PlacementMode)
+    if(this.activeMode === UserMode.PlacementMode)
     {
       if (window.sunflower) {
         const clone = window.sunflower.clone();
@@ -195,6 +195,21 @@ class App {
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
     this.camera.matrixAutoUpdate = false;
+  }
+
+  changeToObjectMode(){
+    if(this.activeMode !== UserMode.ObjectMode)
+    {
+      this.activeMode = UserMode.ObjectMode;
+    }
+    console.log(this.activeMode);
+  }
+  changeToPlacementMode(){
+    if(this.activeMode !== UserMode.PlacementMode)
+    {
+      this.activeMode = UserMode.PlacementMode;
+    }
+    console.log(this.activeMode);
   }
 };
 
