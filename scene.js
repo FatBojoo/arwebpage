@@ -20,8 +20,8 @@
 (async function() {
   const isArSessionSupported = navigator.xr && navigator.xr.isSessionSupported && await navigator.xr.isSessionSupported("immersive-ar");
   if (isArSessionSupported) {
-    document.getElementById("enter-ar").addEventListener("click", window.app.activateXR)
-    //window.app.activateXR();
+    //document.getElementById("enter-ar").addEventListener("click", window.app.activateXR)
+    await window.app.activateXR();
   } else {
     onNoXRDevice();
   }
@@ -105,17 +105,20 @@ class App {
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = (event) => {
-    let selectedObject = event.getElementById();
-    if(selectedObject === "PlacementMode")
+    let selectedObject = event.target;
+    if(selectedObject.id === "PlacementMode")
     {
+      console.log("Pressing Placement Button");
       this.changeToPlacementMode();
     }
-    else if(selectedObject === "ObjectMode")
+    else if(selectedObject.id === "ObjectMode")
     {
+      console.log("Pressing Object Button");
       this.changeToObjectMode();
     }
     else
     {
+      console.log("Pressing Screenspace");
       if(this.activeMode === UserMode.PlacementMode)
       {
         if (window.sunflower) {
@@ -214,7 +217,6 @@ class App {
     {
       this.activeMode = UserMode.ObjectMode;
     }
-    console.log(this.activeMode);
     this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   changeToPlacementMode(){
@@ -222,7 +224,6 @@ class App {
     {
       this.activeMode = UserMode.PlacementMode;
     }
-    console.log(this.activeMode);
     this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
 };
