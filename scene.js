@@ -28,8 +28,8 @@
 })();
 
 const UserMode = {
-  ObjectMode: 'ObjectMode',
-  PlacementMode: 'PlacementMode'
+  ObjectMode: 0,
+  PlacementMode: 1
 };
 
 /**
@@ -135,6 +135,7 @@ class App {
     // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
     const pose = frame.getViewerPose(this.localReferenceSpace);
     if (pose) {
+      console.log(this.activeMode);
       // In mobile AR, we only have one view.
       const view = pose.views[0];
 
@@ -155,6 +156,7 @@ class App {
         document.body.classList.add('stabilized');
       }
       if (hitTestResults.length > 0 && this.activeMode === UserMode.PlacementMode) {
+        console.log("reticle visible");
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
         // Update the reticle position
