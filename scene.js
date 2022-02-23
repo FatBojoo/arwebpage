@@ -205,6 +205,7 @@ class App {
       this.activeMode = UserMode.ObjectMode;
     }
     console.log(this.activeMode);
+    this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   changeToPlacementMode(){
     if(this.activeMode !== UserMode.PlacementMode)
@@ -212,6 +213,7 @@ class App {
       this.activeMode = UserMode.PlacementMode;
     }
     console.log(this.activeMode);
+    this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
 };
 
