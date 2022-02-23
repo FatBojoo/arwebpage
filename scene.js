@@ -107,7 +107,7 @@ class App {
   onSelect = (event) => {
     let selectedObject = event.target;
     console.log("Target is");
-    console.log(selectedObject);
+    console.log(selectedObject.id);
     if(selectedObject.id === "PlacementMode")
     {
       console.log("Pressing Placement Button");
