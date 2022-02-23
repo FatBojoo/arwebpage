@@ -104,16 +104,28 @@ class App {
   }
 
   /** Place a sunflower when the screen is tapped. */
-  onSelect = () => {
-    if(this.activeMode === UserMode.PlacementMode)
+  onSelect = (event) => {
+    let selectedObject = event.getElementById();
+    if(selectedObject === "PlacementMode")
     {
-      if (window.sunflower) {
-        const clone = window.sunflower.clone();
-        clone.position.copy(this.reticle.position);
-        this.scene.add(clone)
-
-        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = clone.position.y;
+      this.changeToPlacementMode();
+    }
+    else if(selectedObject === "ObjectMode")
+    {
+      this.changeToObjectMode();
+    }
+    else
+    {
+      if(this.activeMode === UserMode.PlacementMode)
+      {
+        if (window.sunflower) {
+          const clone = window.sunflower.clone();
+          clone.position.copy(this.reticle.position);
+          this.scene.add(clone)
+  
+          const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+          shadowMesh.position.y = clone.position.y;
+        }
       }
     }
   }
@@ -135,7 +147,6 @@ class App {
     // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
     const pose = frame.getViewerPose(this.localReferenceSpace);
     if (pose) {
-      console.log(this.activeMode);
       // In mobile AR, we only have one view.
       const view = pose.views[0];
 
@@ -156,7 +167,6 @@ class App {
         document.body.classList.add('stabilized');
       }
       if (hitTestResults.length > 0 && this.activeMode === UserMode.PlacementMode) {
-        console.log("reticle visible");
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
         // Update the reticle position
