@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
+
 body {
   font-family: monospace;
   margin: 0;
@@ -110,8 +110,8 @@ body.ar.stabilized #stabilization {
   background-repeat: no-repeat;
   border: none;
   opacity: 0.6;
-  width: 162px;
-  height: 162px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   bottom: 10px;
   left: 40%;
@@ -127,8 +127,8 @@ body.ar.stabilized #stabilization {
   background-repeat: no-repeat;
   border: none;
   opacity: 0.6;
-  width: 162px;
-  height: 162px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   bottom: 10px;
   right: 40%;
