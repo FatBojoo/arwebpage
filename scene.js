@@ -223,10 +223,10 @@ class App {
         this.camera.getWorldDirection(cwd);
         
         cwd.multiplyScalar(dist);
-        cwd.add(camera.position);
+        cwd.add(this.camera.position);
         
         this.selectedObject.position.set(cwd.x, cwd.y, cwd.z);
-        this.selectedObject.setRotationFromQuaternion(camera.quaternion);
+        this.selectedObject.setRotationFromQuaternion(this.camera.quaternion);
 
         this.selectedObject.visible = true;
       }
