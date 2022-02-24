@@ -215,8 +215,8 @@ class App {
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
-        this.selectedObject.attach(this.camera);
-        this.selectedObject.translateZ(-10.0);
+        this.camera.add(this.selectedObject);
+        this.selectedObject.position.set(0,0,-100);
         this.selectedObject.visible = true;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
@@ -236,7 +236,7 @@ class App {
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.selectedObject) {
-        this.selectedObject.attach(this.scene);
+        this.scene.add(this.selectedObject);
         this.selectedObject.position.copy(this.reticle.position);
         this.selectedObject.visible = true;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
