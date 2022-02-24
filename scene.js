@@ -111,8 +111,6 @@ class App {
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = (event) => {
-    console.log("Select is registered");
-    console.log(event.target);
     if(this.activeMode === UserMode.ObjectMode)
     {
       this.onChangeToPlacementMode();
@@ -215,20 +213,49 @@ class App {
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
-        this.camera.add(this.selectedObject);
-        
-        var dist = 100;
-        var cwd = new THREE.Vector3();
-        
-        this.camera.getWorldDirection(cwd);
-        
-        cwd.multiplyScalar(dist);
-        cwd.add(this.camera.position);
-        
-        this.selectedObject.position.set(cwd.x, cwd.y, cwd.z);
-        this.selectedObject.setRotationFromQuaternion(this.camera.quaternion);
-
         this.selectedObject.visible = true;
+        this.camera.add(this.selectedObject);
+
+        for (let i = 0; i < 10; i++) {
+          
+          var dist = 10 * (i+1);
+          var cwd = new THREE.Vector3();
+          
+          this.camera.getWorldDirection(cwd);
+          
+          cwd.multiplyScalar(dist);
+          cwd.add(this.camera.position);
+          
+          const clone = this.selectedObject.clone();
+
+          this.camera.add(clone);
+
+          clone.position.set(cwd.x, cwd.y, cwd.z);
+          clone.setRotationFromQuaternion(this.camera.quaternion);
+
+        }
+
+        for (let i = 0; i < 10; i++) {
+          
+          var dist = -10 * (i+1);
+          var cwd = new THREE.Vector3();
+          
+          this.camera.getWorldDirection(cwd);
+          
+          cwd.multiplyScalar(dist);
+          cwd.add(this.camera.position);
+          
+          const clone = this.selectedObject.clone();
+
+          this.camera.add(clone);
+
+          clone.position.set(cwd.x, cwd.y, cwd.z);
+          clone.setRotationFromQuaternion(this.camera.quaternion);
+        }
+
+        console.log(this.camera.position);
+        console.log(this.selectedObject.position);
+
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
