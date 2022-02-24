@@ -216,7 +216,18 @@ class App {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
         this.camera.add(this.selectedObject);
-        this.selectedObject.position.set(0,0,-100);
+        
+        var dist = 100;
+        var cwd = new THREE.Vector3();
+        
+        this.camera.getWorldDirection(cwd);
+        
+        cwd.multiplyScalar(dist);
+        cwd.add(camera.position);
+        
+        this.selectedObject.position.set(cwd.x, cwd.y, cwd.z);
+        this.selectedObject.setRotationFromQuaternion(camera.quaternion);
+
         this.selectedObject.visible = true;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
@@ -228,6 +239,7 @@ class App {
         this.selectedObject.visible = false;
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
+        this.objectPlaced = false;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
