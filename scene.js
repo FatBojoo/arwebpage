@@ -55,7 +55,7 @@ class App {
 
       // Create the canvas that will contain our camera's background and our virtual scene.
       this.createXRCanvas();
-
+      console.log("Created Canvas");
       // With everything set up, start the app.
       await this.onSessionStarted();
     } catch(e) {
@@ -101,6 +101,7 @@ class App {
     this.xrSession.requestAnimationFrame(this.onXRFrame);
 
     this.xrSession.addEventListener("select", this.onSelect);
+    console.log("Created Session");
   }
 
   /** Place a sunflower when the screen is tapped. */
@@ -152,6 +153,7 @@ class App {
     // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
     const pose = frame.getViewerPose(this.localReferenceSpace);
     if (pose) {
+      console.log("Tracking Established");
       // In mobile AR, we only have one view.
       const view = pose.views[0];
 
@@ -215,18 +217,27 @@ class App {
   }
 
   changeToObjectMode(){
-    if(this.activeMode !== UserMode.ObjectMode)
-    {
-      this.activeMode = UserMode.ObjectMode;
-    }
-    this.xrSession.requestAnimationFrame(this.onXRFrame);
+    console.log("Pressing Object Button");
+    //const pose = frame.getViewerPose(this.localReferenceSpace);
+    //if (pose) {
+      if(this.activeMode !== UserMode.ObjectMode)
+      {
+        this.activeMode = UserMode.ObjectMode;
+        this.reticle.visible = false;
+      }
+      this.xrSession.requestAnimationFrame(this.onXRFrame);
+    //}
   }
   changeToPlacementMode(){
-    if(this.activeMode !== UserMode.PlacementMode)
-    {
-      this.activeMode = UserMode.PlacementMode;
-    }
-    this.xrSession.requestAnimationFrame(this.onXRFrame);
+    console.log("Pressing Placement Button");
+    //const pose = frame.getViewerPose(this.localReferenceSpace);
+    //if (pose) {
+      if(this.activeMode !== UserMode.PlacementMode)
+      {
+        this.activeMode = UserMode.PlacementMode;
+      }
+      this.xrSession.requestAnimationFrame(this.onXRFrame);
+    //}
   }
 };
 
