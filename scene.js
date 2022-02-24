@@ -39,6 +39,7 @@ const UserMode = {
 class App {
   constructor() {
     this.activeMode = UserMode.ObjectMode;
+    this.objectPlaced = false;
   }
   
   /**
@@ -106,17 +107,15 @@ class App {
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = (event) => {
-    let selectedObject = event.target;
-    console.log("Target is");
-    console.log(selectedObject.id);
-    if(selectedObject.id === "PlacementMode")
+    console.log("Select is registered");
+    if(this.activeMode === UserMode.ObjectMode)
     {
-      console.log("Pressing Placement Button");
+      console.log("Changing to Placement Mode");
       this.changeToPlacementMode();
     }
-    else if(selectedObject.id === "ObjectMode")
+    else if(objectPlaced)
     {
-      console.log("Pressing Object Button");
+      console.log("Changing to Object Mode");
       this.changeToObjectMode();
     }
     else
@@ -131,9 +130,13 @@ class App {
   
           const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
           shadowMesh.position.y = clone.position.y;
+          objectPlaced = true;
         }
       }
     }
+  }
+  onClick = (event) => {
+    console.log("Click is registered");
   }
 
   /**
