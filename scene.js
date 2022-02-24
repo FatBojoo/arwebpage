@@ -101,7 +101,12 @@ class App {
     // Start a rendering loop using this.onXRFrame.
     this.xrSession.requestAnimationFrame(this.onXRFrame);
 
-    this.xrSession.addEventListener("select", this.onSelect);
+    var el = this.document.getElementById("canvas");
+    el.addEventListener("touchstart", handleStart, false);
+    el.addEventListener("touchend", handleEnd, false);
+    el.addEventListener("touchcancel", handleCancel, false);
+    el.addEventListener("touchmove", handleMove, false);
+    
     console.log("Created Session");
   }
 
@@ -113,7 +118,7 @@ class App {
       console.log("Changing to Placement Mode");
       this.changeToPlacementMode();
     }
-    else if(objectPlaced)
+    else if(this.objectPlaced)
     {
       console.log("Changing to Object Mode");
       this.changeToObjectMode();
@@ -135,8 +140,18 @@ class App {
       }
     }
   }
-  onClick = (event) => {
-    console.log("Click is registered");
+  
+  handleStart(event) {
+    console.log(event.target);
+  }
+  handleEnd(event) {
+    console.log(event.target);
+  }
+  handleCancel(event) {
+    console.log(event.target);
+  }
+  handleMove(event) {
+    console.log(event.target);
   }
 
   /**
@@ -156,7 +171,6 @@ class App {
     // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
     const pose = frame.getViewerPose(this.localReferenceSpace);
     if (pose) {
-      console.log("Tracking Established");
       // In mobile AR, we only have one view.
       const view = pose.views[0];
 
