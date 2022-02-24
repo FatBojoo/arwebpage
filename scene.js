@@ -40,6 +40,10 @@ class App {
   constructor() {
     this.activeMode = UserMode.ObjectMode;
     this.objectPlaced = false;
+    if (window.sunflower)
+    {
+      this.selectedObject = window.sunflower.clone();
+    }
   }
   
   /**
@@ -101,57 +105,26 @@ class App {
     // Start a rendering loop using this.onXRFrame.
     this.xrSession.requestAnimationFrame(this.onXRFrame);
 
-    var el = this.document.getElementById("canvas");
-    el.addEventListener("touchstart", handleStart, false);
-    el.addEventListener("touchend", handleEnd, false);
-    el.addEventListener("touchcancel", handleCancel, false);
-    el.addEventListener("touchmove", handleMove, false);
-    
+    this.xrSession.addEventListener("select", this.onSelect);
     console.log("Created Session");
   }
 
   /** Place a sunflower when the screen is tapped. */
   onSelect = (event) => {
     console.log("Select is registered");
+    console.log(event.target);
     if(this.activeMode === UserMode.ObjectMode)
     {
-      console.log("Changing to Placement Mode");
-      this.changeToPlacementMode();
+      this.onChangeToPlacementMode();
     }
     else if(this.objectPlaced)
     {
-      console.log("Changing to Object Mode");
-      this.changeToObjectMode();
+      this.onChangeToObjectMode();
     }
     else
     {
-      console.log("Pressing Screenspace");
-      if(this.activeMode === UserMode.PlacementMode)
-      {
-        if (window.sunflower) {
-          const clone = window.sunflower.clone();
-          clone.position.copy(this.reticle.position);
-          this.scene.add(clone)
-  
-          const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-          shadowMesh.position.y = clone.position.y;
-          objectPlaced = true;
-        }
-      }
+      this.onPlacement();
     }
-  }
-  
-  handleStart(event) {
-    console.log(event.target);
-  }
-  handleEnd(event) {
-    console.log(event.target);
-  }
-  handleCancel(event) {
-    console.log(event.target);
-  }
-  handleMove(event) {
-    console.log(event.target);
   }
 
   /**
@@ -194,7 +167,6 @@ class App {
         const hitPose = hitTestResults[0].getPose(this.localReferenceSpace);
 
         // Update the reticle position
-        this.reticle.visible = true;
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
@@ -225,6 +197,11 @@ class App {
     this.scene = DemoUtils.createLitScene();
     this.reticle = new Reticle();
     this.scene.add(this.reticle);
+    if(this.selectedObject == null)
+    {
+      this.selectedObject = window.sunflower.clone();
+    }
+    this.scene.add(this.selectedObject)
 
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
@@ -233,28 +210,38 @@ class App {
     this.camera.matrixAutoUpdate = false;
   }
 
-  changeToObjectMode(){
-    console.log("Pressing Object Button");
-    //const pose = frame.getViewerPose(this.localReferenceSpace);
-    //if (pose) {
+  onChangeToObjectMode(){
       if(this.activeMode !== UserMode.ObjectMode)
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
+        this.selectedObject.visible = true;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
-    //}
   }
-  changeToPlacementMode(){
-    console.log("Pressing Placement Button");
-    //const pose = frame.getViewerPose(this.localReferenceSpace);
-    //if (pose) {
+  onChangeToPlacementMode(){
       if(this.activeMode !== UserMode.PlacementMode)
       {
+        // Here we want the model rendered with lower opacity
+        this.selectedObject.visible = false;
+        this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
-    //}
+  }
+  onPlacement(){
+    console.log("Pressing Screenspace");
+    if(this.activeMode === UserMode.PlacementMode)
+    {
+      if (this.selectedObject) {
+        this.selectedObject.position.copy(this.reticle.position);
+        this.selectedObject.visible = true;
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = this.selectedObject.position.y;
+        objectPlaced = true;
+      }
+    }
+    this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
 };
 
