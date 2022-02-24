@@ -218,7 +218,7 @@ class App {
 
         for (let i = 0; i < 10; i++) {
           
-          var dist = 10 * (i+1);
+          var dist = 0.1 * (i+1);
           var cwd = new THREE.Vector3();
           
           this.camera.getWorldDirection(cwd);
@@ -237,7 +237,7 @@ class App {
 
         for (let i = 0; i < 10; i++) {
           
-          var dist = -10 * (i+1);
+          var dist = -0.1 * (i+1);
           var cwd = new THREE.Vector3();
           
           this.camera.getWorldDirection(cwd);
@@ -281,6 +281,8 @@ class App {
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = this.selectedObject.position.y;
         this.objectPlaced = true;
+        console.log("reticle position:");
+        console.log(this.reticle.position);
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
