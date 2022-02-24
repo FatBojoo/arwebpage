@@ -215,7 +215,7 @@ class App {
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
-        this.camera.attach(this.selectedObject);
+        this.selectedObject.attach(this.camera);
         this.selectedObject.translateZ(-10.0);
         this.selectedObject.visible = true;
       }
@@ -236,7 +236,7 @@ class App {
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.selectedObject) {
-        this.scene.attach(this.selectedObject);
+        this.selectedObject.attach(this.scene);
         this.selectedObject.position.copy(this.reticle.position);
         this.selectedObject.visible = true;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
