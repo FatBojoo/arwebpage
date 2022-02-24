@@ -216,6 +216,7 @@ class App {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
         this.camera.attach(this.selectedObject);
+        this.selectedObject.translateZ(-10.0);
         this.selectedObject.visible = true;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
