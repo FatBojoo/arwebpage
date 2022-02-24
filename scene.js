@@ -215,6 +215,7 @@ class App {
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
+        this.camera.attach(this.selectedObject);
         this.selectedObject.visible = true;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
@@ -234,11 +235,12 @@ class App {
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.selectedObject) {
+        this.scene.attach(this.selectedObject);
         this.selectedObject.position.copy(this.reticle.position);
         this.selectedObject.visible = true;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = this.selectedObject.position.y;
-        objectPlaced = true;
+        this.objectPlaced = true;
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
