@@ -155,7 +155,7 @@ class App {
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
 
-      this.objectPositionFrontOfCamera = view.transform.matrix.position + (view.projectionMatrix * THREE.Vector3(0.0, 0.0, 0.1));
+      this.objectPositionFrontOfCamera = view.transform.matrix.position + (view.projectionMatrix * THREE.Vector3(0.1, 0.1, 0.1));
 
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
