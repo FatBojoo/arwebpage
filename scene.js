@@ -222,8 +222,11 @@ class App {
         
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
 
-        console.log(this.camera.position);
+        console.log("position infront of camera:");
+        console.log(this.objectPositionFrontOfCamera);
+        console.log("selectedObject position:");
         console.log(this.selectedObject.position);
+        console.log("reticle position:");
         console.log(this.reticle.position);
 
       }
