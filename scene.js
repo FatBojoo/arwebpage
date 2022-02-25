@@ -218,10 +218,11 @@ class App {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
         this.selectedObject.visible = true;
-        this.camera.add(this.selectedObject);
         
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
-
+        
+        this.camera.attach(this.selectedObject);
+        
         console.log("position infront of camera:");
         console.log(this.objectPositionFrontOfCamera);
         console.log("selectedObject position:");
