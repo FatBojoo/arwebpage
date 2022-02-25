@@ -215,42 +215,30 @@ class App {
         this.reticle.visible = false;
         this.selectedObject.visible = true;
         this.camera.add(this.selectedObject);
-
+        /*
         for (let i = 0; i < 10; i++) {
-          
-          var dist = 0.1 * (i+1);
-          var cwd = new THREE.Vector3();
-          
-          this.camera.getWorldDirection(cwd);
-          
-          cwd.multiplyScalar(dist);
-          cwd.add(this.camera.position);
           
           const clone = this.selectedObject.clone();
 
           this.camera.add(clone);
-
-          clone.position.set(cwd.x, cwd.y, cwd.z);
-          clone.setRotationFromQuaternion(this.camera.quaternion);
-
+          let cameraSpace = this.xrSession.requestReferenceSpace('viewer');
         }
-
+        */
         for (let i = 0; i < 10; i++) {
-          
-          var dist = -0.1 * (i+1);
-          var cwd = new THREE.Vector3();
-          
-          this.camera.getWorldDirection(cwd);
-          
-          cwd.multiplyScalar(dist);
-          cwd.add(this.camera.position);
           
           const clone = this.selectedObject.clone();
 
           this.camera.add(clone);
 
-          clone.position.set(cwd.x, cwd.y, cwd.z);
-          clone.setRotationFromQuaternion(this.camera.quaternion);
+          let animationFrameRequestID = this.xrSession.requestAnimationFrame(this.onXRFrame);
+          let adjustedRefSpace = applyViewerControls(xrReferenceSpace);
+          let pose = frame.getViewerPose(adjustedRefSpace);
+
+          const view = pose.views[0];
+
+          // Use the view's transform matrix and projection matrix to configure the THREE.camera.
+          this.selectedObject.matrix.fromArray(view.transform.matrix)
+          this.selectedObject.position = this.selectedObject.position + (view.projectionMatrix * Vector3(0.0, 0.0, 0.1 * i));
         }
 
         console.log(this.camera.position);
