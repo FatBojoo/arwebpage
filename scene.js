@@ -172,6 +172,10 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
+      if(this.activeMode === UserMode.ObjectMode)
+      {
+        this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
+      }
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
@@ -221,8 +225,8 @@ class App {
         
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
         
-        this.camera.attach(this.selectedObject);
-        
+        //this.camera.attach(this.selectedObject);
+
         console.log("position infront of camera:");
         console.log(this.objectPositionFrontOfCamera);
         console.log("selectedObject position:");
