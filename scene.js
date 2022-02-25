@@ -220,7 +220,7 @@ class App {
         this.selectedObject.visible = true;
         //this.camera.add(this.selectedObject);
         
-        this.selectedObject.position.set(this.objectPositionFrontOfCamera.x, this.objectPositionFrontOfCamera.y, this.objectPositionFrontOfCamera.z);
+        this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
 
         console.log(this.camera.position);
         console.log(this.selectedObject.position);
