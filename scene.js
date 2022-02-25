@@ -44,6 +44,7 @@ class App {
     {
       this.selectedObject = window.sunflower.clone();
     }
+    this.objectPositionFrontOfCamera = Vector3();
   }
   
   /**
@@ -152,6 +153,9 @@ class App {
       this.camera.matrix.fromArray(view.transform.matrix)
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
       this.camera.updateMatrixWorld(true);
+      // Update position infront of camera
+
+      this.objectPositionFrontOfCamera = view.transform.matrix.position + (view.projectionMatrix * Vector3(0.0, 0.0, 0.1));
 
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
@@ -215,34 +219,12 @@ class App {
         this.reticle.visible = false;
         this.selectedObject.visible = true;
         this.camera.add(this.selectedObject);
-        /*
-        for (let i = 0; i < 10; i++) {
-          
-          const clone = this.selectedObject.clone();
-
-          this.camera.add(clone);
-          let cameraSpace = this.xrSession.requestReferenceSpace('viewer');
-        }
-        */
-        for (let i = 0; i < 10; i++) {
-          
-          const clone = this.selectedObject.clone();
-
-          this.camera.add(clone);
-
-          let animationFrameRequestID = this.xrSession.requestAnimationFrame(this.onXRFrame);
-          let adjustedRefSpace = applyViewerControls(xrReferenceSpace);
-          let pose = frame.getViewerPose(adjustedRefSpace);
-
-          const view = pose.views[0];
-
-          // Use the view's transform matrix and projection matrix to configure the THREE.camera.
-          this.selectedObject.matrix.fromArray(view.transform.matrix)
-          this.selectedObject.position = this.selectedObject.position + (view.projectionMatrix * Vector3(0.0, 0.0, 0.1 * i));
-        }
+        
+        this.selectedObject.position = this.objectPositionFrontOfCamera;
 
         console.log(this.camera.position);
         console.log(this.selectedObject.position);
+        console.log(this.reticle.position);
 
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
