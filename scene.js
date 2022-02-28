@@ -217,10 +217,11 @@ class App {
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
     this.camera.matrixAutoUpdate = false;
-    /*
+    
+    this.scene.add(this.camera);
+
     this.camera.add(this.testSelectedObject1);
     this.testSelectedObject1.position.set(0, 0, -1);
-    */
   }
 
   onChangeToObjectMode(){
