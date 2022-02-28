@@ -160,12 +160,12 @@ class App {
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
 
-      this.testSelectedObject1.applyMatrix4(view.transform.matrix);
+      this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
       this.testSelectedObject1.translateZ(-0.2);
-      this.testSelectedObject2.applyMatrix4(view.transform.matrix);
-      this.testSelectedObject2.translateZ(0.2);
-      this.testSelectedObject3.applyMatrix4(view.transform.matrix);
-      this.testSelectedObject3.translateY(-0.2);
+      this.testSelectedObject2.matrixWorld.fromArray(view.transform.matrix);
+      this.testSelectedObject2.translateZ(-0.2);
+      this.testSelectedObject3.modelViewMatrix.fromArray(view.transform.matrix);
+      this.testSelectedObject3.translateZ(-0.2);
       this.testSelectedObject4.translateZ(-0.2);
 
       // Conduct hit test.
