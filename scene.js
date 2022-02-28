@@ -213,6 +213,7 @@ class App {
     this.camera.matrixAutoUpdate = false;
 
     this.camera.add(this.testSelectedObject1);
+    this.testSelectedObject1.position.set(0, 0, -1);
   }
 
   onChangeToObjectMode(){
