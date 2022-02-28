@@ -41,19 +41,11 @@ class App {
     this.activeMode = UserMode.ObjectMode;
     this.objectPlaced = false;
     this.doAttachOnce = false;
-    if (window.sunflower)
-    {
-      this.selectedObject = window.sunflower.clone();
-      this.testSelectedObject1 = new THREE.Object3D();
-      this.testSelectedObject2 = new THREE.Object3D();
-      this.testSelectedObject3 = new THREE.Object3D();
-      this.testSelectedObject4 = new THREE.Object3D();
-
-      this.testSelectedObject1.add(window.sunflower.clone());
-      this.testSelectedObject2.add(window.sunflower.clone());
-      this.testSelectedObject3.add(window.sunflower.clone());
-      this.testSelectedObject4.add(window.sunflower.clone());
-    }
+    this.selectedObject = new THREE.Object3D();
+    this.testSelectedObject1 = new THREE.Object3D();
+    this.testSelectedObject2 = new THREE.Object3D();
+    this.testSelectedObject3 = new THREE.Object3D();
+    this.testSelectedObject4 = new THREE.Object3D();
     this.objectPositionFrontOfCamera = THREE.Vector3();
   }
   
@@ -222,16 +214,20 @@ class App {
     this.scene = DemoUtils.createLitScene();
     this.reticle = new Reticle();
     this.scene.add(this.reticle);
-    if(this.selectedObject == null)
-    {
-      this.selectedObject = window.sunflower.clone();
-    }
+    
+    this.selectedObject = window.sunflower.clone();
     this.scene.add(this.selectedObject)
+    
+    this.testSelectedObject1.add(window.sunflower.clone());
+    this.testSelectedObject2.add(window.sunflower.clone());
+    this.testSelectedObject3.add(window.sunflower.clone());
+    this.testSelectedObject4.add(window.sunflower.clone());
 
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
+    this.camera.add(testSelectedObject4);
     this.camera.matrixAutoUpdate = false;
   }
 
