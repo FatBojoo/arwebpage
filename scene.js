@@ -40,9 +40,14 @@ class App {
   constructor() {
     this.activeMode = UserMode.ObjectMode;
     this.objectPlaced = false;
+    this.doAttachOnce = false;
     if (window.sunflower)
     {
       this.selectedObject = window.sunflower.clone();
+      this.testSelectedObject1 = window.sunflower.clone();
+      this.testSelectedObject2 = window.sunflower.clone();
+      this.testSelectedObject3 = window.sunflower.clone();
+      this.testSelectedObject4 = window.sunflower.clone();
     }
     this.objectPositionFrontOfCamera = THREE.Vector3();
   }
@@ -155,7 +160,14 @@ class App {
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
 
-      this.objectPositionFrontOfCamera = view.transform.matrix.position + (view.projectionMatrix * THREE.Vector3(0.1, 0.1, 0.1));
+      this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject1.translateZ(-0.2);
+      this.testSelectedObject2.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject2.translateZ(0.2);
+      this.testSelectedObject3.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject3.translateY(-0.2);
+      this.testSelectedObject4.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject4.translateY(-0.2);
 
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
