@@ -153,6 +153,8 @@ class App {
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
       this.camera.updateMatrixWorld(true);
 
+      this.objectPositionFrontOfCamera = new THREE.Vector3(view.transform.position.x, view.transform.position.y, view.transform.position.z);
+
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
 
