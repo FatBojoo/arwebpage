@@ -159,7 +159,7 @@ class App {
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
 
       this.camera.add(this.testSelectedObject4);
-      this.testSelectedObject4.translateY(-0.2);
+      this.testSelectedObject4.translateZ(-0.2);
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
 
@@ -169,7 +169,7 @@ class App {
       this.testSelectedObject2.translateZ(0.2);
       this.testSelectedObject3.applyMatrix4(view.transform.matrix);
       this.testSelectedObject3.translateY(-0.2);
-      this.testSelectedObject4.translateY(-0.2);
+      this.testSelectedObject4.translateZ(-0.2);
 
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
