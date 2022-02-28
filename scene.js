@@ -232,10 +232,11 @@ class App {
         this.testSelectedObject1.visible = true;
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
         
-        if(this.doAttachOnce == true)
+        if(this.doAttachOnce == false)
         {
           console.log("Adding object to camera");
           this.camera.add(this.testSelectedObject1);
+          this.doAttachOnce = true;
         }
         /*
         console.log("position infront of camera:");
