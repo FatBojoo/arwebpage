@@ -44,10 +44,15 @@ class App {
     if (window.sunflower)
     {
       this.selectedObject = window.sunflower.clone();
-      this.testSelectedObject1 = window.sunflower.clone();
-      this.testSelectedObject2 = window.sunflower.clone();
-      this.testSelectedObject3 = window.sunflower.clone();
-      this.testSelectedObject4 = window.sunflower.clone();
+      this.testSelectedObject1 = new THREE.Object3D();
+      this.testSelectedObject2 = new THREE.Object3D();
+      this.testSelectedObject3 = new THREE.Object3D();
+      this.testSelectedObject4 = new THREE.Object3D();
+
+      this.testSelectedObject1.add(window.sunflower.clone());
+      this.testSelectedObject2.add(window.sunflower.clone());
+      this.testSelectedObject3.add(window.sunflower.clone());
+      this.testSelectedObject4.add(window.sunflower.clone());
     }
     this.objectPositionFrontOfCamera = THREE.Vector3();
   }
