@@ -173,7 +173,9 @@ class App {
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
+        this.testSelectedObject1.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z - 0.5);
         this.selectedObject.updateMatrixWorld(true);
+        this.testSelectedObject1.updateMatrixWorld(true);
       }
 
       // Render the scene with THREE.WebGLRenderer.
@@ -208,14 +210,17 @@ class App {
     
     this.testSelectedObject1.add(window.sunflower.clone());
 
+    this.scene.add(this.testSelectedObject1)
+    this.testSelectedObject1.visible = false;
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
     this.camera.matrixAutoUpdate = false;
-
+    /*
     this.camera.add(this.testSelectedObject1);
     this.testSelectedObject1.position.set(0, 0, -1);
+    */
   }
 
   onChangeToObjectMode(){
@@ -224,7 +229,7 @@ class App {
         this.activeMode = UserMode.ObjectMode;
         //this.reticle.visible = false;
         this.selectedObject.visible = true;
-        
+        this.testSelectedObject1.visible = true;
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
         
         //this.camera.attach(this.selectedObject);
