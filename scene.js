@@ -155,9 +155,11 @@ class App {
       this.camera.matrix.fromArray(view.transform.matrix)
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
 
+      this.camera.add(this.testSelectedObject1);
+      this.camera.add(this.testSelectedObject2);
+      this.camera.add(this.testSelectedObject3);
       this.camera.add(this.testSelectedObject4);
       this.testSelectedObject4.translateZ(-0.2);
-      this.camera.updateMatrixWorld(true);
       // Update position infront of camera
       this.objectPositionFrontOfCamera = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z);
       this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
@@ -167,6 +169,9 @@ class App {
       this.testSelectedObject3.modelViewMatrix.fromArray(view.transform.matrix);
       this.testSelectedObject3.translateZ(-0.2);
       this.testSelectedObject4.translateZ(-0.2);
+
+      
+      this.camera.updateMatrixWorld(true);
 
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
@@ -186,6 +191,7 @@ class App {
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
+        this.selectedObject.updateMatrixWorld(true);
       }
 
       // Render the scene with THREE.WebGLRenderer.
