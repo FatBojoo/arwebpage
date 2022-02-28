@@ -159,7 +159,7 @@ class App {
       this.testSelectedObject4.translateZ(-0.2);
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
-
+      this.objectPositionFrontOfCamera = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z);
       this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
       this.testSelectedObject1.translateZ(-0.2);
       this.testSelectedObject2.matrixWorld.fromArray(view.transform.matrix);
