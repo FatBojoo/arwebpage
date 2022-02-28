@@ -43,9 +43,6 @@ class App {
     this.doAttachOnce = false;
     this.selectedObject = new THREE.Object3D();
     this.testSelectedObject1 = new THREE.Object3D();
-    this.testSelectedObject2 = new THREE.Object3D();
-    this.testSelectedObject3 = new THREE.Object3D();
-    this.testSelectedObject4 = new THREE.Object3D();
     this.objectPositionFrontOfCamera = THREE.Vector3();
   }
   
@@ -154,23 +151,6 @@ class App {
       // Use the view's transform matrix and projection matrix to configure the THREE.camera.
       this.camera.matrix.fromArray(view.transform.matrix)
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
-
-      this.camera.add(this.testSelectedObject1);
-      this.camera.add(this.testSelectedObject2);
-      this.camera.add(this.testSelectedObject3);
-      this.camera.add(this.testSelectedObject4);
-      this.testSelectedObject4.translateZ(-0.2);
-      // Update position infront of camera
-      this.objectPositionFrontOfCamera = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z);
-      this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
-      this.testSelectedObject1.translateZ(-0.2);
-      this.testSelectedObject2.matrixWorld.fromArray(view.transform.matrix);
-      this.testSelectedObject2.translateZ(-0.2);
-      this.testSelectedObject3.modelViewMatrix.fromArray(view.transform.matrix);
-      this.testSelectedObject3.translateZ(-0.2);
-      this.testSelectedObject4.translateZ(-0.2);
-
-      
       this.camera.updateMatrixWorld(true);
 
       // Conduct hit test.
@@ -225,23 +205,21 @@ class App {
     this.scene.add(this.selectedObject)
     
     this.testSelectedObject1.add(window.sunflower.clone());
-    this.testSelectedObject2.add(window.sunflower.clone());
-    this.testSelectedObject3.add(window.sunflower.clone());
-    this.testSelectedObject4.add(window.sunflower.clone());
 
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
-    this.camera.add(this.testSelectedObject4);
     this.camera.matrixAutoUpdate = false;
+
+    this.camera.add(this.testSelectedObject1);
   }
 
   onChangeToObjectMode(){
       if(this.activeMode !== UserMode.ObjectMode)
       {
         this.activeMode = UserMode.ObjectMode;
-        this.reticle.visible = false;
+        //this.reticle.visible = false;
         this.selectedObject.visible = true;
         
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
