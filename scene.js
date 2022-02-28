@@ -227,7 +227,7 @@ class App {
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
     this.camera = new THREE.PerspectiveCamera();
-    this.camera.add(testSelectedObject4);
+    this.camera.add(this.testSelectedObject4);
     this.camera.matrixAutoUpdate = false;
   }
 
