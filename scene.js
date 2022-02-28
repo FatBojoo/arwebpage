@@ -232,15 +232,19 @@ class App {
         this.testSelectedObject1.visible = true;
         this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
         
-        //this.camera.attach(this.selectedObject);
-
+        if(this.doAttachOnce == true)
+        {
+          console.log("Adding object to camera");
+          this.camera.add(this.testSelectedObject1);
+        }
+        /*
         console.log("position infront of camera:");
         console.log(this.objectPositionFrontOfCamera);
         console.log("selectedObject position:");
         console.log(this.selectedObject.position);
         console.log("reticle position:");
         console.log(this.reticle.position);
-
+        */
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
