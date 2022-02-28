@@ -157,16 +157,18 @@ class App {
       // Use the view's transform matrix and projection matrix to configure the THREE.camera.
       this.camera.matrix.fromArray(view.transform.matrix)
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
+
+      this.camera.add(this.testSelectedObject4);
+      this.testSelectedObject4.translateY(-0.2);
       this.camera.updateMatrixWorld(true);
       // Update position infront of camera
 
-      this.testSelectedObject1.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject1.applyMatrix4(view.transform.matrix);
       this.testSelectedObject1.translateZ(-0.2);
-      this.testSelectedObject2.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject2.applyMatrix4(view.transform.matrix);
       this.testSelectedObject2.translateZ(0.2);
-      this.testSelectedObject3.matrix.fromArray(view.transform.matrix);
+      this.testSelectedObject3.applyMatrix4(view.transform.matrix);
       this.testSelectedObject3.translateY(-0.2);
-      this.testSelectedObject4.matrix.fromArray(view.transform.matrix);
       this.testSelectedObject4.translateY(-0.2);
 
       // Conduct hit test.
