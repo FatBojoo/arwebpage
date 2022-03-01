@@ -41,9 +41,8 @@ class App {
     this.activeMode = UserMode.ObjectMode;
     this.objectPlaced = false;
     this.doAttachOnce = false;
-    this.selectedObject = new THREE.Object3D();
-    this.testSelectedObject1 = new THREE.Object3D();
-    this.objectPositionFrontOfCamera = THREE.Vector3();
+    this.objectObjectMode = new THREE.Object3D();
+    this.objectPlacementMode = new THREE.Object3D();
   }
   
   /**
@@ -153,8 +152,6 @@ class App {
       this.camera.projectionMatrix.fromArray(view.projectionMatrix);
       this.camera.updateMatrixWorld(true);
 
-      this.objectPositionFrontOfCamera = new THREE.Vector3(view.transform.position.x, view.transform.position.y, view.transform.position.z);
-
       // Conduct hit test.
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
 
@@ -170,13 +167,11 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
+      /*
       if(this.activeMode === UserMode.ObjectMode)
       {
-        this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
-        this.testSelectedObject1.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z - 0.5);
-        this.selectedObject.updateMatrixWorld(true);
-        this.testSelectedObject1.updateMatrixWorld(true);
-      }
+        this.xrSession.visibilityStage = ""
+      }*/
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
@@ -205,13 +200,12 @@ class App {
     this.reticle = new Reticle();
     this.scene.add(this.reticle);
     
-    this.selectedObject = window.sunflower.clone();
-    this.scene.add(this.selectedObject)
+    this.objectPlacementMode = window.sunflower.clone();
+    this.scene.add(this.objectPlacementMode)
     
-    this.testSelectedObject1.add(window.sunflower.clone());
+    this.objectObjectMode.add(window.sunflower.clone());
 
-    this.scene.add(this.testSelectedObject1)
-    this.testSelectedObject1.visible = false;
+    this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
@@ -220,33 +214,28 @@ class App {
     
     this.scene.add(this.camera);
 
-    this.camera.add(this.testSelectedObject1);
-    this.testSelectedObject1.position.set(0, 0, -1);
+    this.camera.add(this.objectObjectMode);
+    this.objectObjectMode.position.set(0, 0, -1);
+
+    var box = new THREE.Box3().setFromObject( this.objectObjectMode )
+    var boundingBoxSize = box.max.sub( box.min );
+    var height = boundingBoxSize.y;
+
+    // Convert camera fov degrees to radians
+    var fov = this.camera.fov * ( Math.PI / 180 ); 
+    // Calculate the camera distance
+    var distance = Math.abs( objectSize / Math.sin( fov / 2 ) );
+
+    this.objectObjectMode.position.set(0, height / 2, -distance);
   }
 
   onChangeToObjectMode(){
       if(this.activeMode !== UserMode.ObjectMode)
       {
         this.activeMode = UserMode.ObjectMode;
-        //this.reticle.visible = false;
-        this.selectedObject.visible = true;
-        this.testSelectedObject1.visible = true;
-        this.selectedObject.position.set(this.reticle.position.x, this.reticle.position.y, this.objectPositionFrontOfCamera.z);
-        
-        if(this.doAttachOnce == false)
-        {
-          console.log("Adding object to camera");
-          this.camera.add(this.testSelectedObject1);
-          this.doAttachOnce = true;
-        }
-        /*
-        console.log("position infront of camera:");
-        console.log(this.objectPositionFrontOfCamera);
-        console.log("selectedObject position:");
-        console.log(this.selectedObject.position);
-        console.log("reticle position:");
-        console.log(this.reticle.position);
-        */
+        this.reticle.visible = false;
+        this.objectObjectMode.visible = true;
+        this.objectPlacementMode.visible = false;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -254,7 +243,7 @@ class App {
       if(this.activeMode !== UserMode.PlacementMode)
       {
         // Here we want the model rendered with lower opacity
-        this.selectedObject.visible = false;
+        this.objectObjectMode.visible = false;
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
@@ -265,15 +254,13 @@ class App {
     console.log("Pressing Screenspace");
     if(this.activeMode === UserMode.PlacementMode)
     {
-      if (this.selectedObject) {
-        this.scene.add(this.selectedObject);
-        this.selectedObject.position.copy(this.reticle.position);
-        this.selectedObject.visible = true;
+      if (this.objectPlacementMode) {
+        this.objectPlacementMode.position.copy(this.reticle.position);
+        this.objectPlacementMode.visible = true;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = this.selectedObject.position.y;
+        shadowMesh.position.y = this.objectPlacementMode.position.y;
         this.objectPlaced = true;
-        console.log("reticle position:");
-        console.log(this.reticle.position);
+        this.reticle.visible = false;
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
