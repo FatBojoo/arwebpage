@@ -228,6 +228,8 @@ class App {
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
     this.objectObjectMode.position.set(0, -height / 2, -distance);
+    const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+    shadowMesh.position.y = this.objectObjectMode.position.y;
   }
 
   onChangeToObjectMode(){
