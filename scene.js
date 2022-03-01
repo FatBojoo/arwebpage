@@ -224,7 +224,7 @@ class App {
     // Convert camera fov degrees to radians
     var fov = this.camera.fov * ( Math.PI / 180 ); 
     // Calculate the camera distance
-    var distance = Math.abs( objectSize / Math.sin( fov / 2 ) );
+    var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
     this.objectObjectMode.position.set(0, height / 2, -distance);
   }
