@@ -201,7 +201,8 @@ class App {
     this.scene.add(this.reticle);
     
     this.objectPlacementMode = window.sunflower.clone();
-    this.scene.add(this.objectPlacementMode)
+    this.scene.add(this.objectPlacementMode);
+    this.objectPlacementMode.visible = false;
     
     this.objectObjectMode.add(window.sunflower.clone());
 
