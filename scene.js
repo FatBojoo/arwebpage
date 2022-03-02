@@ -174,6 +174,8 @@ class App {
       const delta = this.clock.getDelta();
 
 			//this.animationMixer.update( delta );
+      console.log(this.objectObjectMode.position);
+      console.log(this.objectObjectMode.scale);
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
