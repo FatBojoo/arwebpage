@@ -173,7 +173,7 @@ class App {
       
       const delta = this.clock.getDelta();
 
-			this.animationMixer.update( delta );
+			//this.animationMixer.update( delta );
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
@@ -233,8 +233,8 @@ class App {
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
 
-    this.animationMixer = new THREE.AnimationMixer( model );
-    this.animationMixer.clipAction(window.animation).play();
+    //this.animationMixer = new THREE.AnimationMixer( model );
+    //this.animationMixer.clipAction(window.animation).play();
   }
 
   onChangeToObjectMode(){
@@ -246,6 +246,7 @@ class App {
         this.objectPlacementMode.visible = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
+        this.objectObjectMode.scale.set(this.objectObjectMode.scale.x - 0.1, this.objectObjectMode.scale.y - 0.1, this.objectObjectMode.scale.z - 0.1)
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
