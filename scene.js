@@ -230,6 +230,9 @@ class App {
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
     this.objectObjectMode.position.set(0, -height / 2, -distance);
+
+    console.log(this.objectObjectMode.position);
+
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
 
@@ -246,10 +249,6 @@ class App {
         this.objectPlacementMode.visible = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
-        this.objectObjectMode.scale.set(this.objectObjectMode.scale.x * 0.1, this.objectObjectMode.scale.y * 0.1, this.objectObjectMode.scale.z * 0.1)
-        this.objectPlacementMode.scale.set(this.objectPlacementMode.scale.x * 0.1, this.objectPlacementMode.scale.y * 0.1, this.objectPlacementMode.scale.z * 0.1)
-        console.log(this.objectObjectMode.scale);
-        console.log(this.objectPlacementMode.scale);
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }

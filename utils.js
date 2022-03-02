@@ -39,7 +39,7 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   //window.sunflower.scale(0.1, 0.1, 0.1);
 
   window.model = gltf.scene;
-  window.model.scale.set( 0.001, 0.001, 0.001 );
+  window.model.scale.set( 0.01, 0.01, 0.01 );
   //window.animation = gltf.animations[ 0 ];
 });
 
