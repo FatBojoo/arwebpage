@@ -36,6 +36,7 @@ window.gltfLoader.load("https://cdn.aframe.io/examples/ar/models/triceratops/sce
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
   //flower.castShadow = true;
   window.sunflower = gltf.scene;
+  window.sunflower.scale(0.1, 0.1, 0.1);
 });
 
 
