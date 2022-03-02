@@ -239,6 +239,8 @@ class App {
         this.reticle.visible = false;
         this.objectObjectMode.visible = true;
         this.objectPlacementMode.visible = false;
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = this.objectObjectMode.position.y;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -250,6 +252,8 @@ class App {
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = 10000;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
