@@ -106,9 +106,9 @@ class App {
 
     this.xrSession.addEventListener("select", this.onSelect);
 
-    this.xrSession.addEventListener("touchstart", this.onTouchStart, false);
-    this.xrSession.addEventListener("touchend", this.onTouchEnd, false);
-    this.xrSession.addEventListener("touchmove", this.onTouchMove, false);
+    this.canvas.addEventListener("touchstart", this.onTouchStart, false);
+    this.canvas.addEventListener("touchend", this.onTouchEnd, false);
+    this.canvas.addEventListener("touchmove", this.onTouchMove, false);
 
     console.log("Created Session");
   }
