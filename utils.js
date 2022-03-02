@@ -35,8 +35,17 @@ class Reticle extends THREE.Object3D {
 window.gltfLoader.load("https://cdn.aframe.io/examples/ar/models/triceratops/scene.gltf", function(gltf) {
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
   //flower.castShadow = true;
-  window.sunflower = gltf.scene;
-  window.sunflower.scale(0.1, 0.1, 0.1);
+  //window.sunflower = gltf.scene;
+  //window.sunflower.scale(0.1, 0.1, 0.1);
+
+  const model = gltf.scene;
+  model.position.set( 1, 1, 0 );
+  model.scale.set( 0.01, 0.01, 0.01 );
+
+  let mixer = new THREE.AnimationMixer( model );
+  mixer.clipAction( gltf.animations[ 0 ] ).play();
+
+  animate();
 });
 
 
