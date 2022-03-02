@@ -105,10 +105,16 @@ class App {
     this.xrSession.requestAnimationFrame(this.onXRFrame);
 
     this.xrSession.addEventListener("select", this.onSelect);
+
+    this.xrSession.addEventListener("touchstart", this.onTouchStart, false);
+    this.xrSession.addEventListener("touchend", this.onTouchEnd, false);
+    this.xrSession.addEventListener("touchmove", this.onTouchMove, false);
+
     console.log("Created Session");
   }
 
   /** Place a sunflower when the screen is tapped. */
+  /*
   onSelect = (event) => {
     if(this.activeMode === UserMode.ObjectMode)
     {
@@ -123,7 +129,7 @@ class App {
       this.onPlacement();
     }
   }
-
+*/
   /**
    * Called on the XRSession's requestAnimationFrame.
    * Called with the time and XRPresentationFrame.
@@ -240,7 +246,7 @@ class App {
         this.objectObjectMode.visible = true;
         this.objectPlacementMode.visible = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = this.objectObjectMode.position.y;
+        shadowMesh.position.y = 10000;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -271,6 +277,22 @@ class App {
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
+  }
+
+  onTouchEnd(){
+    console.log("Touch Ended");
+    console.log("Touch Ended");
+    console.log("Touch Ended");
+  }
+
+  onTouchStart(){
+    console.log("Touch Started");
+    console.log("Touch Started");
+    console.log("Touch Started");
+  }
+
+  onTouchMove(){
+    console.log("Touch Moving");
   }
 };
 
