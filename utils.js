@@ -39,7 +39,7 @@ window.gltfLoader.load("https://cdn.aframe.io/examples/ar/models/triceratops/sce
   //window.sunflower.scale(0.1, 0.1, 0.1);
 
   window.model = gltf.scene;
-  window.model.scale.set( 0.01, 0.01, 0.01 );
+  window.model.scale.set( 0.0001, 0.0001, 0.0001 );
   window.animation = gltf.animations[ 0 ];
 });
 
