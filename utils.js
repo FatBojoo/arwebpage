@@ -38,14 +38,9 @@ window.gltfLoader.load("https://cdn.aframe.io/examples/ar/models/triceratops/sce
   //window.sunflower = gltf.scene;
   //window.sunflower.scale(0.1, 0.1, 0.1);
 
-  const model = gltf.scene;
-  model.position.set( 1, 1, 0 );
-  model.scale.set( 0.01, 0.01, 0.01 );
-
-  let mixer = new THREE.AnimationMixer( model );
-  mixer.clipAction( gltf.animations[ 0 ] ).play();
-
-  animate();
+  window.model = gltf.scene;
+  window.model.scale.set( 0.01, 0.01, 0.01 );
+  window.animation = gltf.animations[ 0 ];
 });
 
 

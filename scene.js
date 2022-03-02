@@ -43,6 +43,7 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
+    this.animationMixer = new THREE.AnimationMixer();
   }
   
   /**
@@ -124,7 +125,7 @@ class App {
       this.onPlacement();
     }
   }
-  
+
   /**
    * Called on the XRSession's requestAnimationFrame.
    * Called with the time and XRPresentationFrame.
@@ -168,11 +169,10 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
-      /*
-      if(this.activeMode === UserMode.ObjectMode)
-      {
-        this.xrSession.visibilityStage = ""
-      }*/
+      
+      const delta = clock.getDelta();
+
+			this.animationMixer.update( delta );
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
@@ -201,11 +201,11 @@ class App {
     this.reticle = new Reticle();
     this.scene.add(this.reticle);
     
-    this.objectPlacementMode = window.sunflower.clone();
+    this.objectPlacementMode = window.model.clone();
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
     
-    this.objectObjectMode.add(window.sunflower.clone());
+    this.objectObjectMode.add(window.model.clone());
 
     this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
@@ -231,6 +231,9 @@ class App {
     this.objectObjectMode.position.set(0, -height / 2, -distance);
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
+
+    this.animationMixer = new THREE.AnimationMixer( model );
+    this.animationMixer.clipAction(window.animation).play();
   }
 
   onChangeToObjectMode(){
