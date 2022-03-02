@@ -247,6 +247,7 @@ class App {
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
         this.objectObjectMode.scale.set(this.objectObjectMode.scale.x * 0.1, this.objectObjectMode.scale.y * 0.1, this.objectObjectMode.scale.z * 0.1)
+        this.objectPlacementMode.scale.set(this.objectPlacementMode.scale.x * 0.1, this.objectPlacementMode.scale.y * 0.1, this.objectPlacementMode.scale.z * 0.1)
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
