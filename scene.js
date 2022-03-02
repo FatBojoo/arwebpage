@@ -106,15 +106,10 @@ class App {
 
     this.xrSession.addEventListener("select", this.onSelect);
 
-    this.canvas.addEventListener("touchstart", this.onTouchStart);
-    this.canvas.addEventListener("touchend", this.onTouchEnd);
-    this.canvas.addEventListener("touchmove", this.onTouchMove);
-
     console.log("Created Session");
   }
 
   /** Place a sunflower when the screen is tapped. */
-  /*
   onSelect = (event) => {
     if(this.activeMode === UserMode.ObjectMode)
     {
@@ -129,7 +124,7 @@ class App {
       this.onPlacement();
     }
   }
-*/
+  
   /**
    * Called on the XRSession's requestAnimationFrame.
    * Called with the time and XRPresentationFrame.
