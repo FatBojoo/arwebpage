@@ -176,6 +176,7 @@ class App {
 			//this.animationMixer.update( delta );
       console.log(this.objectObjectMode.position);
       console.log(this.objectObjectMode.scale);
+      this.objectObjectMode.scale.set(0.01, 0.01, 0.01);
 
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
