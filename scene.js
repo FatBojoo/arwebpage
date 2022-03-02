@@ -44,6 +44,7 @@ class App {
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
     this.animationMixer = new THREE.AnimationMixer();
+    this.clock = new THREE.Clock();
   }
   
   /**
@@ -170,7 +171,7 @@ class App {
         this.reticle.updateMatrixWorld(true);
       }
       
-      const delta = clock.getDelta();
+      const delta = this.clock.getDelta();
 
 			this.animationMixer.update( delta );
 
