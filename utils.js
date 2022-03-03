@@ -50,7 +50,7 @@ class ARObject extends THREE.Object3D {
     mroot.scale.multiplyScalar(0.01);
 
     this.animations = new THREE.AnimationMixer( mroot );
-		this.animations.clipAction( mroot.animations[ 0 ] ).play();
+		this.animations.clipAction( gltf.animations[ 0 ] ).play();
     
     this.add(mroot);
 
