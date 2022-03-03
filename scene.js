@@ -200,11 +200,11 @@ class App {
     this.reticle = new Reticle();
     this.scene.add(this.reticle);
     
-    this.objectPlacementMode = SkeletonUtils.clone(window.model_big);
+    this.objectPlacementMode = THREE.SkeletonUtils.clone(window.model_big);
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
     
-    this.objectObjectMode = SkeletonUtils.clone(window.model_big);
+    this.objectObjectMode = THREE.SkeletonUtils.clone(window.model_big);
 
     this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
