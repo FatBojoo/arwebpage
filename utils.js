@@ -53,9 +53,9 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
 
-  mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
+  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
-  window.model = gltf.scene;
+  window.model = mroot;
   //window.animation = gltf.animations[ 0 ];
 });
 
