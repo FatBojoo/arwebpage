@@ -51,22 +51,22 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-/*
-  //Rescale the object to normalized space
-  var maxAxis = Math.max(size.x, size.y, size.z);
-  mroot.scale.multiplyScalar(1.0 / maxAxis);
-  bbox.setFromObject(mroot);
-  bbox.getCenter(cent);
-  bbox.getSize(size);
-  //Reposition to 0,halfY,0
-  mroot.position.copy(cent).multiplyScalar(-1);
-  mroot.position.y-= (size.y * 0.5);
-*/
+
+  
+  mroot.scale.multiplyScalar(0.01);
+
+  var nbbox = new THREE.Box3().setFromObject(mroot);
+  var ncent = nbbox.getCenter(new THREE.Vector3());
+  var nsize = nbbox.getSize(new THREE.Vector3());
+
   console.log("mroot post scale");
   console.log(mroot.scale);
+  console.log("mroot post center");
+  console.log(ncent);
+  console.log("mroot post size");
+  console.log(nsize);
   console.log("mroot position");
   console.log(mroot.position);
-  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
   window.model_big = mroot;
   //window.animation = gltf.animations[ 0 ];
@@ -91,22 +91,22 @@ window.gltfLoader.load("Bee_smaller.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-/*
-  //Rescale the object to normalized space
-  var maxAxis = Math.max(size.x, size.y, size.z);
-  mroot.scale.multiplyScalar(1.0 / (maxAxis));
-  bbox.setFromObject(mroot);
-  bbox.getCenter(cent);
-  bbox.getSize(size);
-  //Reposition to 0,halfY,0
-  mroot.position.copy(cent).multiplyScalar(-1);
-  mroot.position.y-= (size.y * 0.5);
-*/
+
+  
+  mroot.scale.multiplyScalar(0.01);
+
+  var nbbox = new THREE.Box3().setFromObject(mroot);
+  var ncent = nbbox.getCenter(new THREE.Vector3());
+  var nsize = nbbox.getSize(new THREE.Vector3());
+
   console.log("mroot post scale");
   console.log(mroot.scale);
+  console.log("mroot post center");
+  console.log(ncent);
+  console.log("mroot post size");
+  console.log(nsize);
   console.log("mroot position");
   console.log(mroot.position);
-  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
   window.model = mroot;
   //window.animation = gltf.animations[ 0 ];
@@ -131,22 +131,22 @@ window.gltfLoader.load("Bee_smaller_10.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-/*
-  //Rescale the object to normalized space
-  var maxAxis = Math.max(size.x, size.y, size.z);
-  mroot.scale.multiplyScalar(1.0 / (maxAxis));
-  bbox.setFromObject(mroot);
-  bbox.getCenter(cent);
-  bbox.getSize(size);
-  //Reposition to 0,halfY,0
-  mroot.position.copy(cent).multiplyScalar(-1);
-  mroot.position.y-= (size.y * 0.5);
-*/
+
+  
+  mroot.scale.multiplyScalar(0.01);
+
+  var nbbox = new THREE.Box3().setFromObject(mroot);
+  var ncent = nbbox.getCenter(new THREE.Vector3());
+  var nsize = nbbox.getSize(new THREE.Vector3());
+
   console.log("mroot post scale");
   console.log(mroot.scale);
+  console.log("mroot post center");
+  console.log(ncent);
+  console.log("mroot post size");
+  console.log(nsize);
   console.log("mroot position");
   console.log(mroot.position);
-  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
   window.model_10 = mroot;
   //window.animation = gltf.animations[ 0 ];
