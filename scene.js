@@ -173,6 +173,9 @@ class App {
       
       const delta = this.clock.getDelta();
 
+      this.objectObjectMode.animations.update(delta);
+      this.objectPlacementMode.animations.update(delta);
+
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }

@@ -37,12 +37,19 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
+    this.animations = new THREE.AnimationMixer();
     this.loader.load("Bee.glb", (gltf) => {
-      
+    
+    const mesh = gltf.scene.children.find(c => c.name === '1645859359680_0');
+    mesh.castShadow = true;
     var mroot = gltf.scene;
     mroot.scale.multiplyScalar(0.01);
+
+    this.animations = new THREE.AnimationMixer( mroot );
+		this.animations.clipAction( mroot.animations[ 0 ] ).play();
     
     this.add(mroot);
+
     })
   }
 }
