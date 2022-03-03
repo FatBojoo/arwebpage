@@ -232,11 +232,6 @@ class App {
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
     this.objectObjectMode.position.set(0, -height / 2, -distance);
-    
-    console.log("Object position");
-    console.log(this.objectObjectMode.position);
-    console.log("Object scale");
-    console.log(this.objectObjectMode.scale);
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
@@ -244,6 +239,7 @@ class App {
     this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
     this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
 
+    console.log("Animations");
     
     console.log(this.objectObjectMode.animations);
     console.log(this.objectPlacementMode.animations);
