@@ -202,16 +202,10 @@ class App {
     this.scene.add(this.reticle);
     
     this.objectPlacementMode.add(window.model_big.clone());
-    this.objectPlacementMode.add(window.model.clone());
-    this.objectPlacementMode.add(window.model_10.clone());
-    this.objectPlacementMode.add(window.model_100.clone());
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
     
     this.objectObjectMode.add(window.model_big.clone());
-    this.objectObjectMode.add(window.model.clone());
-    this.objectObjectMode.add(window.model_10.clone());
-    this.objectObjectMode.add(window.model_100.clone());
 
     this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
@@ -225,7 +219,7 @@ class App {
     this.camera.add(this.objectObjectMode);
     this.objectObjectMode.position.set(0, 0, -1);
 
-    var box = new THREE.Box3().setFromObject( window.model_10 );
+    var box = new THREE.Box3().setFromObject( window.model_big );
     var boundingBoxSize = box.max.sub( box.min );
     var height = boundingBoxSize.y;
 
