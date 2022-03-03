@@ -31,6 +31,21 @@ class Reticle extends THREE.Object3D {
     this.visible = false;
   }
 }
+
+class ARObject extends THREE.Object3D {
+  constructor() {
+    super();
+
+    this.loader = new THREE.GLTFLoader();
+    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
+      
+    var mroot = gltf.scene;
+    mroot.scale.multiplyScalar(0.01);
+    
+    this.add(mroot);
+    })
+  }
+}
 //"https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf"
 window.gltfLoader.load("Bee.glb", function(gltf) {
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
