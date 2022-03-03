@@ -244,6 +244,10 @@ class App {
     this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
     this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
 
+    
+    console.log(this.objectObjectMode.animations);
+    console.log(this.objectPlacementMode.animations);
+
     this.animationMixerOOM.clipAction( this.objectObjectMode.animations[ 0 ] ).play();
     this.animationMixerOPM.clipAction( this.objectPlacementMode.animations[ 0 ] ).play();
 
