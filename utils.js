@@ -51,17 +51,17 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-
+/*
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
-  mroot.scale.multiplyScalar(1.0 / (maxAxis * 0.01));
+  mroot.scale.multiplyScalar(1.0 / maxAxis);
   bbox.setFromObject(mroot);
   bbox.getCenter(cent);
   bbox.getSize(size);
   //Reposition to 0,halfY,0
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
-
+*/
   console.log("mroot post scale");
   console.log(mroot.scale);
   console.log("mroot position");
@@ -91,7 +91,7 @@ window.gltfLoader.load("Bee_smaller.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-
+/*
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
   mroot.scale.multiplyScalar(1.0 / (maxAxis));
@@ -101,7 +101,7 @@ window.gltfLoader.load("Bee_smaller.glb", function(gltf) {
   //Reposition to 0,halfY,0
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
-
+*/
   console.log("mroot post scale");
   console.log(mroot.scale);
   console.log("mroot position");
@@ -131,7 +131,7 @@ window.gltfLoader.load("Bee_smaller_10.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-
+/*
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
   mroot.scale.multiplyScalar(1.0 / (maxAxis));
@@ -141,7 +141,7 @@ window.gltfLoader.load("Bee_smaller_10.glb", function(gltf) {
   //Reposition to 0,halfY,0
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
-
+*/
   console.log("mroot post scale");
   console.log(mroot.scale);
   console.log("mroot position");
@@ -171,7 +171,7 @@ window.gltfLoader.load("Bee_smaller_100.glb", function(gltf) {
   console.log(size);
   console.log("mroot position");
   console.log(mroot.position);
-
+/*
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
   mroot.scale.multiplyScalar(1.0 / (maxAxis));
@@ -181,7 +181,7 @@ window.gltfLoader.load("Bee_smaller_100.glb", function(gltf) {
   //Reposition to 0,halfY,0
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
-
+*/
   console.log("mroot post scale");
   console.log(mroot.scale);
   console.log("mroot position");
