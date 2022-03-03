@@ -43,6 +43,10 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   var cent = bbox.getCenter(new THREE.Vector3());
   var size = bbox.getSize(new THREE.Vector3());
 
+  console.log(mroot.scale);
+  console.log(cent);
+  console.log(size);
+
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
   mroot.scale.multiplyScalar(1.0 / (maxAxis * 0.01));
@@ -53,6 +57,7 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
 
+  console.log(mroot.scale);
   //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
   window.model = mroot;
