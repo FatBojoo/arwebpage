@@ -227,7 +227,7 @@ class App {
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
-    this.objectObjectMode.position.set(0, -height / 2, -distance);
+    this.objectObjectMode.position.set(0, -height / 2, (-distance*20));
 
     console.log(this.objectObjectMode.position);
 
