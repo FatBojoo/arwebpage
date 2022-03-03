@@ -168,7 +168,6 @@ class App {
 
         // Update the reticle position
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
-        this.objectPlacementMode.position.copy(this.reticle.position);
         this.reticle.updateMatrixWorld(true);
       }
       
@@ -227,11 +226,13 @@ class App {
     var fov = this.camera.fov * ( Math.PI / 180 ); 
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
-    console.log(distance);
-    console.log("Placed position");
-    this.objectObjectMode.position.set(0, -height / 2, -2);
 
+    this.objectObjectMode.position.set(0, -height / 2, -distance);
+    
+    console.log("Object position");
     console.log(this.objectObjectMode.position);
+    console.log("Object scale");
+    console.log(this.objectObjectMode.scale);
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
@@ -258,7 +259,6 @@ class App {
         // Here we want the model rendered with lower opacity
         this.objectObjectMode.visible = false;
         this.reticle.visible = true;
-        this.objectPlacementMode.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
