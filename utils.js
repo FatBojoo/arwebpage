@@ -60,10 +60,41 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   console.log(mroot.scale);
   //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
-  window.model = mroot;
+  window.model_big = mroot;
   //window.animation = gltf.animations[ 0 ];
 });
 
+window.gltfLoader.load("Bee_samller.glb", function(gltf) {
+  const flower = gltf.scene.children.find(c => c.name === 'sunflower')
+  //flower.castShadow = true;
+  //window.sunflower = gltf.scene;
+  //window.sunflower.scale(0.1, 0.1, 0.1);
+
+  var mroot = gltf.scene;
+  var bbox = new THREE.Box3().setFromObject(mroot);
+  var cent = bbox.getCenter(new THREE.Vector3());
+  var size = bbox.getSize(new THREE.Vector3());
+
+  console.log(mroot.scale);
+  console.log(cent);
+  console.log(size);
+
+  //Rescale the object to normalized space
+  var maxAxis = Math.max(size.x, size.y, size.z);
+  mroot.scale.multiplyScalar(1.0 / (maxAxis * 0.01));
+  bbox.setFromObject(mroot);
+  bbox.getCenter(cent);
+  bbox.getSize(size);
+  //Reposition to 0,halfY,0
+  mroot.position.copy(cent).multiplyScalar(-1);
+  mroot.position.y-= (size.y * 0.5);
+
+  console.log(mroot.scale);
+  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
+
+  window.model = mroot;
+  //window.animation = gltf.animations[ 0 ];
+});
 
 window.DemoUtils = {
   /**
