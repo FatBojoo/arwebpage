@@ -219,7 +219,7 @@ class App {
     this.camera.add(this.objectObjectMode);
     this.objectObjectMode.position.set(0, 0, -1);
 
-    var box = new THREE.Box3().setFromObject( window.model_big );
+    var box = new THREE.Box3().setFromObject( this.objectObjectMode );
     var boundingBoxSize = box.max.sub( box.min );
     var height = boundingBoxSize.y;
 
@@ -227,9 +227,9 @@ class App {
     var fov = this.camera.fov * ( Math.PI / 180 ); 
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
-
+    console.log(distance);
     console.log("Placed position");
-    this.objectObjectMode.position.set(0, -height / 2, -20);
+    this.objectObjectMode.position.set(0, -height / 2, -2);
 
     console.log(this.objectObjectMode.position);
 
