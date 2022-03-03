@@ -49,6 +49,7 @@ class ARObject extends THREE.Object3D {
     var mroot = gltf.scene;
     mroot.scale.multiplyScalar(0.01);
 
+    console.log(gltf.animations);
     this.animations = gltf.animations;
     
     this.add(mroot);
