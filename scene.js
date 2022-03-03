@@ -271,7 +271,7 @@ class App {
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.objectPlacementMode) {
-        this.objectPlacementMode.position.copy(this.reticle.position);
+        this.objectPlacementMode.position.set(this.reticle.position.x, this.reticle.position.y, this.reticle.position.z);
         this.objectPlacementMode.visible = true;
 
         var bbox = new THREE.Box3().setFromObject(this.objectPlacementMode);
