@@ -168,6 +168,7 @@ class App {
 
         // Update the reticle position
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+        this.objectPlacementMode.position.copy(this.reticle.position);
         this.reticle.updateMatrixWorld(true);
       }
       
@@ -263,6 +264,7 @@ class App {
         // Here we want the model rendered with lower opacity
         this.objectObjectMode.visible = false;
         this.reticle.visible = true;
+        this.objectPlacementMode.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
@@ -277,6 +279,15 @@ class App {
       if (this.objectPlacementMode) {
         this.objectPlacementMode.position.copy(this.reticle.position);
         this.objectPlacementMode.visible = true;
+
+        var bbox = new THREE.Box3().setFromObject(this.objectPlacementMode);
+        var cent = bbox.getCenter(new THREE.Vector3());
+
+        console.log("object placed center");
+        console.log(cent);
+        console.log("reticle placed position");
+        console.log(this.reticle.position);
+
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = this.objectPlacementMode.position.y;
         this.objectPlaced = true;
