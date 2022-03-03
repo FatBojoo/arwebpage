@@ -45,7 +45,7 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
 
   //Rescale the object to normalized space
   var maxAxis = Math.max(size.x, size.y, size.z);
-  mroot.scale.multiplyScalar(1.0 / maxAxis);
+  mroot.scale.multiplyScalar(1.0 / (maxAxis * 0.01));
   bbox.setFromObject(mroot);
   bbox.getCenter(cent);
   bbox.getSize(size);
@@ -53,7 +53,7 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   mroot.position.copy(cent).multiplyScalar(-1);
   mroot.position.y-= (size.y * 0.5);
 
-  //mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
+  mroot.scale.set(mroot.scale.x * 0.01, mroot.scale.y * 0.01, mroot.scale.z * 0.01);
 
   window.model = mroot;
   //window.animation = gltf.animations[ 0 ];
