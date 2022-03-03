@@ -37,7 +37,7 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", (gltf) => {
+    this.loader.load("Bee.glb", (gltf) => {
       
     var mroot = gltf.scene;
     mroot.scale.multiplyScalar(0.01);
