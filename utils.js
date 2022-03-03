@@ -64,7 +64,7 @@ window.gltfLoader.load("Bee.glb", function(gltf) {
   //window.animation = gltf.animations[ 0 ];
 });
 
-window.gltfLoader.load("Bee_samller.glb", function(gltf) {
+window.gltfLoader.load("Bee_smaller.glb", function(gltf) {
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
   //flower.castShadow = true;
   //window.sunflower = gltf.scene;
