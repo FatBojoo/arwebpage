@@ -37,7 +37,7 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.animations = new Array<THREE.AnimationClip>[];
+    this.animations = [];
     this.loader.load("Bee.glb", (gltf) => {
     
     gltf.scene.traverse( function( node ) {
@@ -50,7 +50,11 @@ class ARObject extends THREE.Object3D {
     mroot.scale.multiplyScalar(0.01);
 
     console.log(gltf.animations);
-    this.animations = gltf.animations;
+    //this.animations = gltf.animations;
+
+    for (index = 0; index < gltf.animations.length; ++index) {
+      this.animations.push(gltf.animations[i]);
+    }
     
     this.add(mroot);
 
