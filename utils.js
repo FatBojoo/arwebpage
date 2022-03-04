@@ -234,8 +234,8 @@ window.DemoUtils = {
     directionalLight.position.set(10, 15, 10);
 
     // We want this light to cast shadow.
-    directionalLight.castShadow = true;
-
+    directionalLight.castShadow = false;
+    /*
     // Make a large plane to receive our shadows
     const planeGeometry = new THREE.PlaneGeometry(2000, 2000);
     // Rotate our plane to be parallel to the floor
@@ -255,7 +255,7 @@ window.DemoUtils = {
     shadowMesh.position.y = 10000;
 
     // Add lights and shadow material to scene.
-    scene.add(shadowMesh);
+    scene.add(shadowMesh);*/
     scene.add(light);
     scene.add(directionalLight);
 
