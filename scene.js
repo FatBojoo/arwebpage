@@ -43,9 +43,11 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
+    /*
     this.animationMixerOOM = new THREE.AnimationMixer();
     this.animationMixerOPM = new THREE.AnimationMixer();
     this.clock = new THREE.Clock();
+    */
   }
   
   /**
@@ -171,12 +173,12 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
-      
+      /*
       const delta = this.clock.getDelta();
 
       this.animationMixerOOM.update(delta);
       this.animationMixerOPM.update(delta);
-
+      */
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
@@ -236,6 +238,7 @@ class App {
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
 
+    /*
     this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
     this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
 
@@ -249,6 +252,7 @@ class App {
 
     //this.animationMixer = new THREE.AnimationMixer( model );
     //this.animationMixer.clipAction(window.animation).play();
+    */
   }
 
   onChangeToObjectMode(){
