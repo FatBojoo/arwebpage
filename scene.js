@@ -43,11 +43,6 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
-    /*
-    this.animationMixerOOM = new THREE.AnimationMixer();
-    this.animationMixerOPM = new THREE.AnimationMixer();
-    this.clock = new THREE.Clock();
-    */
   }
   
   /**
@@ -173,12 +168,7 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
-      /*
-      const delta = this.clock.getDelta();
 
-      this.animationMixerOOM.update(delta);
-      this.animationMixerOPM.update(delta);
-      */
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
@@ -237,22 +227,6 @@ class App {
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
-
-    /*
-    this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
-    this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
-
-    console.log("Animations");
-    
-    console.log(this.objectObjectMode.animations);
-    console.log(this.objectPlacementMode.animations);
-
-    this.animationMixerOOM.clipAction( this.objectObjectMode.animations[ 0 ] ).play();
-    this.animationMixerOPM.clipAction( this.objectPlacementMode.animations[ 0 ] ).play();
-
-    //this.animationMixer = new THREE.AnimationMixer( model );
-    //this.animationMixer.clipAction(window.animation).play();
-    */
   }
 
   onChangeToObjectMode(){
@@ -303,22 +277,6 @@ class App {
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
-  }
-
-  onTouchEnd(){
-    console.log("Touch Ended");
-    console.log("Touch Ended");
-    console.log("Touch Ended");
-  }
-
-  onTouchStart(){
-    console.log("Touch Started");
-    console.log("Touch Started");
-    console.log("Touch Started");
-  }
-
-  onTouchMove(){
-    console.log("Touch Moving");
   }
 };
 
