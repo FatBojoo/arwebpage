@@ -43,6 +43,9 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
+    this.animationMixerOOM = new THREE.AnimationMixer();
+    this.animationMixerOPM = new THREE.AnimationMixer();
+    this.clock = new THREE.Clock();
   }
   
   /**
@@ -168,7 +171,12 @@ class App {
         this.reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
         this.reticle.updateMatrixWorld(true);
       }
-
+      
+      const delta = this.clock.getDelta();
+      /*
+      this.animationMixerOOM.update(delta);
+      this.animationMixerOPM.update(delta);
+      */
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
@@ -211,7 +219,7 @@ class App {
     
     this.scene.add(this.camera);
 
-    this.camera.add(this.objectObjectMode);
+    //this.camera.add(this.objectObjectMode);
     this.objectObjectMode.position.set(0, 0, -1);
 
     var box = new THREE.Box3().setFromObject( this.objectObjectMode );
@@ -225,8 +233,22 @@ class App {
 
     this.objectObjectMode.position.set(0, -height / 2, -distance);
 
-    /*const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-    shadowMesh.position.y = this.objectObjectMode.position.y;*/
+    const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+    shadowMesh.position.y = this.objectObjectMode.position.y;
+    /*
+    this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
+    this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
+    
+    console.log("Animations");
+    
+    console.log(this.objectObjectMode.animations);
+    console.log(this.objectPlacementMode.animations);
+
+    this.animationMixerOOM.clipAction( this.objectObjectMode.animations[ 0 ] ).play();
+    this.animationMixerOPM.clipAction( this.objectPlacementMode.animations[ 0 ] ).play();
+    */
+    //this.animationMixer = new THREE.AnimationMixer( model );
+    //this.animationMixer.clipAction(window.animation).play();
   }
 
   onChangeToObjectMode(){
@@ -236,8 +258,8 @@ class App {
         this.reticle.visible = false;
         this.objectObjectMode.visible = true;
         this.objectPlacementMode.visible = false;
-        /*const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = 10000;*/
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = 10000;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -249,8 +271,8 @@ class App {
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
-        /*const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = 10000;*/
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = 10000;
       }
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -270,13 +292,29 @@ class App {
         console.log("reticle placed position");
         console.log(this.reticle.position);
 
-        /*const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = this.objectPlacementMode.position.y;*/
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = this.objectPlacementMode.position.y;
         this.objectPlaced = true;
         this.reticle.visible = false;
       }
     }
     this.xrSession.requestAnimationFrame(this.onXRFrame);
+  }
+
+  onTouchEnd(){
+    console.log("Touch Ended");
+    console.log("Touch Ended");
+    console.log("Touch Ended");
+  }
+
+  onTouchStart(){
+    console.log("Touch Started");
+    console.log("Touch Started");
+    console.log("Touch Started");
+  }
+
+  onTouchMove(){
+    console.log("Touch Moving");
   }
 };
 
