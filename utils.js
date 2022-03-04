@@ -51,11 +51,11 @@ class ARObject extends THREE.Object3D {
 
     console.log(gltf.animations);
     //this.animations = gltf.animations;
-
+    var index;
     for (index = 0; index < gltf.animations.length; ++index) {
       this.animations.push(gltf.animations[i]);
     }
-    
+
     this.add(mroot);
 
     })
