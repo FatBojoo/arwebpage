@@ -48,11 +48,12 @@ class ARObject extends THREE.Object3D {
     var mroot = gltf.scene;
     mroot.scale.multiplyScalar(0.01);
 
+    var box = new THREE.Box3().setFromObject( mroot );
+    var boundingBoxSize = box.max.sub( box.min );
+    this.height = boundingBoxSize.y;
+
     this.add(mroot);
 
-    },
-    (xhr) => {
-        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
     })
   }
 }
