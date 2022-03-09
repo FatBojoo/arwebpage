@@ -174,9 +174,8 @@ class App {
       
       const delta = this.clock.getDelta();
       
-      delta = clock.getDelta();
       var speed = 1.0;
-      
+
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.objectObjectMode.rotateY(speed * delta);
