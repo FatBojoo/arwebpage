@@ -230,8 +230,9 @@ class App {
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
-    this.objectObjectMode.position.set(0, -height / 2, -20);
-
+    this.objectObjectMode.position.set(0, -height / 2, -distance);
+    console.log("Object Mode object");
+    console.log(this.objectObjectMode.position);
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
     /*
@@ -259,6 +260,8 @@ class App {
         this.objectPlacementMode.visible = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
+        console.log("Object Mode object");
+        console.log(this.objectObjectMode.position);
       }
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -283,13 +286,12 @@ class App {
         this.objectPlacementMode.position.set(this.reticle.position.x, this.reticle.position.y, this.reticle.position.z);
         this.objectPlacementMode.visible = true;
 
-        var bbox = new THREE.Box3().setFromObject(this.objectPlacementMode);
-        var cent = bbox.getCenter(new THREE.Vector3());
-
-        console.log("object placed center");
-        console.log(cent);
+        console.log("Placement Mode object");
+        console.log(this.objectPlacementMode.position);
         console.log("reticle placed position");
         console.log(this.reticle.position);
+        console.log("Object Mode object");
+        console.log(this.objectObjectMode.position);
 
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = this.objectPlacementMode.position.y;
