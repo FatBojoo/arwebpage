@@ -233,8 +233,8 @@ class App {
 
     //this.objectObjectMode.position.set(0, -height / 2, -distance);
 
-    //const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-    //shadowMesh.position.y = this.objectObjectMode.position.y;
+    const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+    shadowMesh.position.y = this.objectObjectMode.position.y;
     /*
     this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
     this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
