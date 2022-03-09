@@ -227,8 +227,10 @@ class App {
     
 
     this.objectObjectMode.addEventListener( 'model-loaded', () => {
-
+    
+    console.log("After Loaded:");
     var box = new THREE.Box3().setFromObject( this.objectObjectMode );
+    console.log(box);
     var boundingBoxSize = box.max.sub( box.min );
     var height = boundingBoxSize.y;
 
