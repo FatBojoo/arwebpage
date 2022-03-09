@@ -43,8 +43,8 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
-    this.animationMixerOOM = new THREE.AnimationMixer();
-    this.animationMixerOPM = new THREE.AnimationMixer();
+    //this.animationMixerOOM = new THREE.AnimationMixer();
+    //this.animationMixerOPM = new THREE.AnimationMixer();
     this.clock = new THREE.Clock();
   }
   
@@ -220,7 +220,6 @@ class App {
     this.scene.add(this.camera);
 
     this.camera.add(this.objectObjectMode);
-    this.objectObjectMode.position.set(0, 0, -1);
 
     var box = new THREE.Box3().setFromObject( this.objectObjectMode );
     var boundingBoxSize = box.max.sub( box.min );
@@ -261,7 +260,7 @@ class App {
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
       }
-      this.xrSession.requestAnimationFrame(this.onXRFrame);
+      //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   onChangeToPlacementMode(){
       if(this.activeMode !== UserMode.PlacementMode)
@@ -274,7 +273,7 @@ class App {
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
       }
-      this.xrSession.requestAnimationFrame(this.onXRFrame);
+      //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   onPlacement(){
     console.log("Pressing Screenspace");
@@ -298,7 +297,7 @@ class App {
         this.reticle.visible = false;
       }
     }
-    this.xrSession.requestAnimationFrame(this.onXRFrame);
+    //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
 
   onTouchEnd(){
