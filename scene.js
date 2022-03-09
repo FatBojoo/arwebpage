@@ -32,6 +32,10 @@ const UserMode = {
   PlacementMode: 1
 };
 
+var animPlacementMixer = new THREE.AnimationMixer();
+var placementObjectLoaded = false;
+var animObjectMixer = new THREE.AnimationMixer();
+var objectObjectLoaded = false;
 /**
  * Container class to manage connecting to the WebXR Device API
  * and handle rendering on every frame.
@@ -177,6 +181,14 @@ class App {
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.objectObjectMode.rotateY(speed * delta);
+      }
+      if(this.objectPlacementMode.visible === true)
+      {
+        animPlacementMixer.update( delta );
+      }
+      if(this.objectObjectMode.visible === true)
+      {
+        animObjectMixer.update( delta );
       }
       
       // Render the scene with THREE.WebGLRenderer.

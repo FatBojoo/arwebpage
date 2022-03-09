@@ -48,6 +48,19 @@ class ARObject extends THREE.Object3D {
     var mroot = gltf.scene;
     mroot.scale.multiplyScalar(0.01);
 
+    if(placementObjectLoaded === false)
+    {
+      animPlacementMixer = new THREE.AnimationMixer( mroot );
+      animPlacementMixer.clipAction( gltf.animations[ 0 ] ).play();
+      placementObjectLoaded = true;
+    }
+    else if(objectObjectLoaded === false)
+    {
+      animObjectMixer = new THREE.AnimationMixer( mroot );
+      animObjectMixer.clipAction( gltf.animations[ 0 ] ).play();
+      objectObjectLoaded = true;
+    }
+
     this.add(mroot);
 
     })
