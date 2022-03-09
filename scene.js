@@ -220,16 +220,7 @@ class App {
     this.scene.add(this.camera);
 
     this.camera.add(this.objectObjectMode);
-    
-    // Convert camera fov degrees to radians
-    var fov = this.camera.fov * ( Math.PI / 180 );
-    // Calculate the camera distance
-    var distance = Math.abs( this.objectObjectMode.height / Math.sin( fov / 2 ) );
 
-    this.objectObjectMode.position.set(0, -this.objectObjectMode.height / 2, -distance);
-    console.log("Test to get initiate data");
-    console.log(this.objectObjectMode.position);
-    console.log(this.objectObjectMode.height);
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
@@ -273,6 +264,17 @@ class App {
         this.objectPlaced = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
+        
+        var box = new THREE.Box3().setFromObject( this.objectObjectMode );
+        var boundingBoxSize = box.max.sub( box.min );
+        var height = boundingBoxSize.y;
+        
+        // Convert camera fov degrees to radians
+        var fov = this.camera.fov * ( Math.PI / 180 );
+        // Calculate the camera distance
+        var distance = Math.abs( height / Math.sin( fov / 2 ) );
+
+        this.objectObjectMode.position.set(0, -height / 2, -distance);
       }
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
