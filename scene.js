@@ -173,10 +173,15 @@ class App {
       }
       
       const delta = this.clock.getDelta();
-      /*
-      this.animationMixerOOM.update(delta);
-      this.animationMixerOPM.update(delta);
-      */
+      
+      delta = clock.getDelta();
+      var speed = 1.0;
+      
+      if(this.activeMode === UserMode.ObjectMode)
+      {
+        this.objectObjectMode.rotateY(speed * delta);
+      }
+      
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
