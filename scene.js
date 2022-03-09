@@ -208,9 +208,9 @@ class App {
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
     
-    this.objectObjectMode = new ARObject();
+    //this.objectObjectMode = new ARObject();
 
-    this.objectObjectMode.visible = true;
+    //this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
@@ -220,21 +220,21 @@ class App {
     this.scene.add(this.camera);
 
     //this.camera.add(this.objectObjectMode);
-    this.objectObjectMode.position.set(0, 0, -1);
+    //this.objectObjectMode.position.set(0, 0, -1);
 
-    var box = new THREE.Box3().setFromObject( this.objectObjectMode );
-    var boundingBoxSize = box.max.sub( box.min );
-    var height = boundingBoxSize.y;
+    //var box = new THREE.Box3().setFromObject( this.objectObjectMode );
+    //var boundingBoxSize = box.max.sub( box.min );
+    //var height = boundingBoxSize.y;
 
     // Convert camera fov degrees to radians
-    var fov = this.camera.fov * ( Math.PI / 180 ); 
+    //var fov = this.camera.fov * ( Math.PI / 180 ); 
     // Calculate the camera distance
-    var distance = Math.abs( height / Math.sin( fov / 2 ) );
+    //var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
-    this.objectObjectMode.position.set(0, -height / 2, -distance);
+    //this.objectObjectMode.position.set(0, -height / 2, -distance);
 
-    const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-    shadowMesh.position.y = this.objectObjectMode.position.y;
+    //const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+    //shadowMesh.position.y = this.objectObjectMode.position.y;
     /*
     this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
     this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
@@ -256,7 +256,7 @@ class App {
       {
         this.activeMode = UserMode.ObjectMode;
         this.reticle.visible = false;
-        this.objectObjectMode.visible = true;
+        //this.objectObjectMode.visible = true;
         this.objectPlacementMode.visible = false;
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = 10000;
@@ -267,7 +267,7 @@ class App {
       if(this.activeMode !== UserMode.PlacementMode)
       {
         // Here we want the model rendered with lower opacity
-        this.objectObjectMode.visible = false;
+        //this.objectObjectMode.visible = false;
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
