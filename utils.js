@@ -37,7 +37,7 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("Bee_wo_armature.glb", (gltf) => {
+    this.loader.load("Bee.glb", (gltf) => {
     
     gltf.scene.traverse( function( node ) {
         if ( node.isMesh ) { 
