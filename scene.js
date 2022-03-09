@@ -210,7 +210,7 @@ class App {
     
     this.objectObjectMode = new ARObject();
 
-    this.objectObjectMode.visible = false;
+    this.objectObjectMode.visible = true;
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
@@ -230,7 +230,7 @@ class App {
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
-    this.objectObjectMode.position.set(0, -height / 2, -distance);
+    this.objectObjectMode.position.set(0, -height / 2, -20);
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
