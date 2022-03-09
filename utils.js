@@ -64,31 +64,12 @@ window.gltfLoader.load("Bee_wo_armature.glb", function(gltf) {
   var bbox = new THREE.Box3().setFromObject(mroot);
   var cent = bbox.getCenter(new THREE.Vector3());
   var size = bbox.getSize(new THREE.Vector3());
-
-  console.log("mroot pre scale");
-  console.log(mroot.scale);
-  console.log("mroot pre center");
-  console.log(cent);
-  console.log("mroot pre size");
-  console.log(size);
-  console.log("mroot position");
-  console.log(mroot.position);
-
   
   mroot.scale.multiplyScalar(0.01);
 
   var nbbox = new THREE.Box3().setFromObject(mroot);
   var ncent = nbbox.getCenter(new THREE.Vector3());
   var nsize = nbbox.getSize(new THREE.Vector3());
-
-  console.log("mroot post scale");
-  console.log(mroot.scale);
-  console.log("mroot post center");
-  console.log(ncent);
-  console.log("mroot post size");
-  console.log(nsize);
-  console.log("mroot position");
-  console.log(mroot.position);
 
   window.model_big = mroot;
   //window.animation = gltf.animations[ 0 ];
