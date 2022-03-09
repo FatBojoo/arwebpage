@@ -43,8 +43,6 @@ class App {
     this.doAttachOnce = false;
     this.objectObjectMode = new THREE.Object3D();
     this.objectPlacementMode = new THREE.Object3D();
-    //this.animationMixerOOM = new THREE.AnimationMixer();
-    //this.animationMixerOPM = new THREE.AnimationMixer();
     this.clock = new THREE.Clock();
   }
   
@@ -214,7 +212,7 @@ class App {
     
     this.objectObjectMode = new ARObject();
 
-    this.objectObjectMode.visible = true;
+    this.objectObjectMode.visible = false;
     // We'll update the camera matrices directly from API, so
     // disable matrix auto updates so three.js doesn't attempt
     // to handle the matrices independently.
@@ -228,20 +226,6 @@ class App {
 
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
-    /*
-    this.animationMixerOOM = new THREE.AnimationMixer(this.objectObjectMode);
-    this.animationMixerOPM = new THREE.AnimationMixer(this.objectPlacementMode);
-    
-    console.log("Animations");
-    
-    console.log(this.objectObjectMode.animations);
-    console.log(this.objectPlacementMode.animations);
-
-    this.animationMixerOOM.clipAction( this.objectObjectMode.animations[ 0 ] ).play();
-    this.animationMixerOPM.clipAction( this.objectPlacementMode.animations[ 0 ] ).play();
-    */
-    //this.animationMixer = new THREE.AnimationMixer( model );
-    //this.animationMixer.clipAction(window.animation).play();
   }
 
   onChangeToObjectMode(){
