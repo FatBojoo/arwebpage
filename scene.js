@@ -221,18 +221,30 @@ class App {
 
     this.camera.add(this.objectObjectMode);
 
+    console.log("Calculating distance:");
     var box = new THREE.Box3().setFromObject( this.objectObjectMode );
+    console.log(box);
     var boundingBoxSize = box.max.sub( box.min );
+    console.log(boundingBoxSize);
     var height = boundingBoxSize.y;
 
     // Convert camera fov degrees to radians
-    var fov = this.camera.fov * ( Math.PI / 180 ); 
+    var fov = this.camera.fov * ( Math.PI / 180 );
+    console.log(fov);
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
-
+    console.log(distance);
     this.objectObjectMode.position.set(0, -height / 2, -distance);
-    console.log("Object Mode object");
+
+    console.log("Object Mode object position");
     console.log(this.objectObjectMode.position);
+
+    console.log("Object Mode object size");
+    console.log(this.objectObjectMode.size);
+    
+    console.log("Object Mode object scale");
+    console.log(this.objectObjectMode.scale);
+
     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
     shadowMesh.position.y = this.objectObjectMode.position.y;
     /*
