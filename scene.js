@@ -208,7 +208,7 @@ class App {
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
     
-    this.objectObjectMode = new ARObject();
+    this.objectObjectMode = this.objectPlacementMode.clone();
 
     this.objectObjectMode.visible = false;
     // We'll update the camera matrices directly from API, so
