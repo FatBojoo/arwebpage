@@ -50,6 +50,9 @@ class ARObject extends THREE.Object3D {
 
     this.add(mroot);
 
+    },
+    (xhr) => {
+        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
     })
   }
 }
