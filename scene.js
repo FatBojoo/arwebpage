@@ -207,6 +207,10 @@ class App {
     this.objectPlacementMode = new ARObject();
     this.scene.add(this.objectPlacementMode);
     this.objectPlacementMode.visible = false;
+
+    console.log("Test box:");
+    var testbox = new THREE.Box3().setFromObject( this.objectPlacementMode );
+    console.log(testbox);
     
     this.objectObjectMode = new ARObject();
 
@@ -219,7 +223,6 @@ class App {
     
     this.scene.add(this.camera);
 
-    this.camera.add(this.objectObjectMode);
 
     console.log("Calculating distance:");
     var box = new THREE.Box3().setFromObject( this.objectObjectMode );
@@ -234,6 +237,9 @@ class App {
     // Calculate the camera distance
     var distance = Math.abs( height / Math.sin( fov / 2 ) );
     console.log(distance);
+
+    this.camera.add(this.objectObjectMode);
+
     this.objectObjectMode.position.set(0, -height / 2, -distance);
 
     console.log("Object Mode object position");

@@ -54,7 +54,7 @@ class ARObject extends THREE.Object3D {
   }
 }
 //"https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf"
-window.gltfLoader.load("Bee.glb", function(gltf) {
+window.gltfLoader.load("Bee_wo_armature.glb", function(gltf) {
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
   //flower.castShadow = true;
   //window.sunflower = gltf.scene;
