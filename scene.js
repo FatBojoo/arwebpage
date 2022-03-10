@@ -234,10 +234,6 @@ class App {
     this.scene.add(this.camera);
 
     this.camera.add(this.objectObjectMode);
-
-
-    const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-    shadowMesh.position.y = this.objectObjectMode.position.y;
   }
 
   onChangeToObjectMode(){
@@ -247,8 +243,6 @@ class App {
         this.reticle.visible = false;
         this.objectObjectMode.visible = true;
         this.objectPlacementMode.visible = false;
-        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = 10000;
 
         var box = new THREE.Box3().setFromObject( this.objectObjectMode );
         var boundingBoxSize = box.max.sub( box.min );
@@ -260,9 +254,6 @@ class App {
         var distance = Math.abs( height / Math.sin( fov / 2 ) );
 
         this.objectObjectMode.position.set(0, -height / 2, -distance);
-
-        console.log("Object Mode object");
-        console.log(this.objectObjectMode.position);
       }
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -274,8 +265,6 @@ class App {
         this.reticle.visible = true;
         this.activeMode = UserMode.PlacementMode;
         this.objectPlaced = false;
-        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = 10000;
       }
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
@@ -288,7 +277,7 @@ class App {
         this.objectPlacementMode.visible = true;
 
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y = this.objectPlacementMode.position.y;
+        shadowMesh.position.y.set(this.reticle.position.x, this.reticle.position.y, this.reticle.position.z);
         this.objectPlaced = true;
         this.reticle.visible = false;
       }
