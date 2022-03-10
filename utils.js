@@ -43,13 +43,11 @@ class ARObject extends THREE.Object3D {
         if ( node.isMesh ) { 
           node.castShadow = true;
           node.receiveShadow = true;
-          console.log("isMesh");
         }
         if ( node.type === 'Mesh' )
         {
           node.castShadow = true;
           node.receiveShadow = true;
-          console.log("=== Mesh");
         }
     } );
 
@@ -115,7 +113,7 @@ window.DemoUtils = {
     directionalLight.position.set(10, 15, 10);
 
     // We want this light to cast shadow.
-    directionalLight.castShadow = false;
+    directionalLight.castShadow = true;
     
     // Make a large plane to receive our shadows
     const planeGeometry = new THREE.PlaneGeometry(2000, 2000);
