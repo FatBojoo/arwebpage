@@ -277,7 +277,7 @@ class App {
         this.objectPlacementMode.visible = true;
 
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-        shadowMesh.position.y.set(this.reticle.position.x, this.reticle.position.y, this.reticle.position.z);
+        shadowMesh.position.set(this.reticle.position.x, this.reticle.position.y, this.reticle.position.z);
         this.objectPlaced = true;
         this.reticle.visible = false;
       }
