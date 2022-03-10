@@ -41,7 +41,15 @@ class ARObject extends THREE.Object3D {
     
     gltf.scene.traverse( function( node ) {
         if ( node.isMesh ) { 
-          node.castShadow = true; 
+          node.castShadow = true;
+          node.receiveShadow = true;
+          console.log("isMesh");
+        }
+        if ( node.type === 'Mesh' )
+        {
+          node.castShadow = true;
+          node.receiveShadow = true;
+          console.log("=== Mesh");
         }
     } );
 
