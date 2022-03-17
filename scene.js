@@ -177,7 +177,7 @@ class App {
       const delta = this.clock.getDelta();
       
       var speed = 1.0;
-
+      /*
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.objectObjectMode.rotateY(speed * delta);
@@ -190,7 +190,7 @@ class App {
       {
         animObjectMixer.update( delta );
       }
-      
+      */
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
