@@ -37,7 +37,7 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("Bee.glb", (gltf) => {
+    this.loader.load("BuildingTest.glb", (gltf) => {
     
     gltf.scene.traverse( function( node ) {
         if ( node.isMesh ) { 
@@ -52,7 +52,7 @@ class ARObject extends THREE.Object3D {
     } );
 
     var mroot = gltf.scene;
-    mroot.scale.multiplyScalar(0.01);
+    //mroot.scale.multiplyScalar(0.01);
 
     if(placementObjectLoaded === false)
     {

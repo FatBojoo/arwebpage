@@ -269,7 +269,6 @@ class App {
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   onPlacement(){
-    console.log("Pressing Screenspace");
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.objectPlacementMode) {
