@@ -37,7 +37,7 @@ class ARObject extends THREE.Object3D {
     super();
 
     this.loader = new THREE.GLTFLoader();
-    this.loader.load("BuildingTest.glb", (gltf) => {
+    this.loader.load("Bee.glb", (gltf) => {
     
     gltf.scene.traverse( function( node ) {
         if ( node.isMesh ) { 
@@ -52,8 +52,8 @@ class ARObject extends THREE.Object3D {
     } );
 
     var mroot = gltf.scene;
-    //mroot.scale.multiplyScalar(0.01);
-    /*
+    mroot.scale.multiplyScalar(0.01);
+
     if(placementObjectLoaded === false)
     {
       animPlacementMixer = new THREE.AnimationMixer( mroot );
@@ -65,7 +65,7 @@ class ARObject extends THREE.Object3D {
       animObjectMixer = new THREE.AnimationMixer( mroot );
       animObjectMixer.clipAction( gltf.animations[ 0 ] ).play();
       objectObjectLoaded = true;
-    }*/
+    }
 
     this.add(mroot);
 

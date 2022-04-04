@@ -17,7 +17,7 @@
  * Query for WebXR support. If there's no support for the `immersive-ar` mode,
  * show an error.
  */
-(async function() {
+ (async function() {
   const isArSessionSupported = navigator.xr && navigator.xr.isSessionSupported && await navigator.xr.isSessionSupported("immersive-ar");
   if (isArSessionSupported) {
     document.getElementById("enter-ar").addEventListener("click", window.app.activateXR)
@@ -177,7 +177,7 @@ class App {
       const delta = this.clock.getDelta();
       
       var speed = 1.0;
-      /*
+
       if(this.activeMode === UserMode.ObjectMode)
       {
         this.objectObjectMode.rotateY(speed * delta);
@@ -190,7 +190,7 @@ class App {
       {
         animObjectMixer.update( delta );
       }
-      */
+      
       // Render the scene with THREE.WebGLRenderer.
       this.renderer.render(this.scene, this.camera)
     }
@@ -269,6 +269,7 @@ class App {
       //this.xrSession.requestAnimationFrame(this.onXRFrame);
   }
   onPlacement(){
+    console.log("Pressing Screenspace");
     if(this.activeMode === UserMode.PlacementMode)
     {
       if (this.objectPlacementMode) {
